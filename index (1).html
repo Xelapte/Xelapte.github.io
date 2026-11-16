@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alex Huang Engraved Portfolio</title>
+<meta name="description" content="Alex Huang, étudiant en troisième année à Epitech Paris, recherche un stage de mars à août 2027 en développement logiciel, IA et automatisation, ou systèmes d'information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&display=swap">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  /* Cobalt ink on paper. Every illustration is traced by a small raytracer and drawn as engraving lines.
+     Layout: one column with generous whitespace, an availability banner that drops in after load. */
+  --ink:#2a2ecd;
+  --ink-soft:#e5e6fb;
+  --paper:#fcfcfc;
+  --text:#0b0b0c;
+  --muted:#8f8f8f;
+  --rule:#e3e3e3;
+  --serif:"Instrument Serif","Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gut:clamp(16px,2vw,24px);
+  --av:40px;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--paper)}
+body{background:var(--paper);color:var(--text);font-family:var(--sans);font-size:18px;line-height:1.35;font-weight:450;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+::selection{background:var(--ink);color:var(--paper)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;letter-spacing:inherit;text-align:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+canvas.eng{display:block;width:100%;background:var(--paper)}
+canvas.eng.inv{background:var(--ink)}
+.js canvas.eng{clip-path:inset(0 0 100% 0)}
+.js canvas.eng.drawn{clip-path:inset(0 0 0 0);transition:clip-path 1.3s cubic-bezier(.3,.6,.2,1)}
+
+.eyebrow{font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:450}
+.h2{font-family:var(--serif);font-weight:400;color:var(--ink);font-size:clamp(42px,5.8vw,86px);line-height:.92;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance}
+.h2.sc{text-transform:none;font-size:clamp(34px,4.2vw,60px);line-height:1;letter-spacing:-.02em}
+.rv{display:block;overflow:hidden;padding-bottom:.06em}
+.rv>span{display:block}
+.js .rv>span{transform:translateY(62%);opacity:.14;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity 1.1s ease}
+.js .rv.in>span{transform:none;opacity:1}
+.js .fade{color:#c2c2c2;transition:color 1.2s ease}
+.js .fade.in{color:inherit}
+
+/* Navigation */
+.avail{position:fixed;top:0;left:0;right:0;z-index:21;height:var(--av);background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;font-size:15px;text-decoration:none;padding:0 var(--gut);white-space:nowrap}
+.avail .dot{width:8px;height:8px;border-radius:50%;background:#fff;flex:none}
+.avail b{font-weight:600}
+.avail .go{text-decoration:underline;text-underline-offset:3px;margin-left:8px}
+section,footer{scroll-margin-top:110px}
+.avail,.nav{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.js:not(.avail-in) .avail{transform:translateY(-100%);visibility:hidden}
+.js:not(.avail-in) .nav{transform:translateY(calc(-1 * var(--av)))}
+.nav{position:fixed;top:var(--av);left:0;right:0;z-index:20;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gut);background:rgba(252,252,252,.94);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.brand{font-family:var(--serif);color:var(--ink);font-size:28px;letter-spacing:-.02em;text-decoration:none}
+.nav-r{display:flex;gap:clamp(18px,3vw,40px);font-size:17px;text-transform:uppercase}
+.nav-r button:hover{color:var(--ink)}
+
+.menu{position:fixed;inset:0;z-index:30;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:var(--gut);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.menu.open{opacity:1;visibility:visible;transition:opacity .35s}
+.menu nav{display:grid;gap:4px}
+.menu a{font-family:var(--serif);font-size:clamp(48px,8.5vw,120px);line-height:.95;text-transform:uppercase;letter-spacing:-.03em;text-decoration:none;justify-self:start}
+.menu a:hover,.menu a:focus-visible{font-style:italic}
+.menu-close{position:absolute;top:22px;right:var(--gut);font-size:17px;text-transform:uppercase}
+
+/* Hero */
+.hero{height:calc(100vh - 118px);height:calc(100svh - 118px);min-height:470px;padding:126px var(--gut) 0;display:flex}
+.hero-art{position:relative;flex:1;overflow:hidden}
+.hero-art canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-text{position:absolute;left:0;right:0;top:41%;transform:translateY(-50%);display:grid;justify-items:center;gap:20px;text-align:center;padding:0 var(--gut);pointer-events:none}
+.kicker{font-family:var(--serif);color:var(--ink);font-size:clamp(19px,1.7vw,25px);letter-spacing:-.02em;background:rgba(252,252,252,.85);padding:0 6px}
+.hero h1{font-family:var(--serif);font-weight:400;color:var(--ink);text-transform:uppercase;font-size:clamp(48px,7.4vw,116px);line-height:1.08;letter-spacing:-.012em;max-width:13ch;text-wrap:balance}
+.hero h1 .w{display:inline-block;white-space:nowrap}
+.js .hero h1 .ch{display:inline;animation:inkIn 1.3s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i) * 24ms)}
+@keyframes inkIn{from{opacity:0;color:#b9bbf2}to{opacity:1}}
+.hero-act{pointer-events:auto;display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:center;color:var(--ink);font-size:17px}
+.hero-act a:not(.ticket){background:rgba(252,252,252,.88);padding:0 4px;text-underline-offset:4px}
+.hero .ticket{background:var(--paper)}
+.hero .ticket:hover{background:var(--ink-soft)}
+.facts{padding:0 var(--gut)}
+.facts dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,1.5fr);gap:22px}
+.facts dl>div{border-top:1.5px solid var(--ink);padding-top:12px;display:grid;gap:4px;align-content:start}
+.facts dt{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.facts dd{font-size:16.5px;line-height:1.3;overflow-wrap:anywhere}
+.facts dd span{display:block}
+
+/* Manifesto */
+.manifesto{padding:clamp(110px,16vh,190px) var(--gut) 0}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.m-art{justify-self:center;width:min(400px,82%)}
+.m-text{display:grid;gap:20px;max-width:33ch}
+.statement{font-size:clamp(30px,3.9vw,56px);line-height:1.08;letter-spacing:-.03em;font-weight:400;max-width:30ch;margin:clamp(120px,20vh,220px) 0 0}
+.statement .wd{color:#cdcdcd;transition:color .35s}
+.statement .wd.on{color:var(--text)}
+
+.break{padding:0 var(--gut);margin-top:clamp(110px,18vh,200px)}
+.break .b1{width:min(420px,92%)}
+.break .b2{width:min(380px,84%);justify-self:end;margin-bottom:clamp(60px,14vh,160px)}
+
+/* Sections */
+.sec{padding:clamp(110px,17vh,200px) var(--gut) 0}
+.sec-head{display:grid;gap:22px;margin-bottom:56px}
+.sec-head p{max-width:40ch}
+
+/* Project rows */
+.rows{border-bottom:1px solid var(--rule)}
+.row{position:relative;border-top:1px solid var(--rule)}
+.row-line{position:absolute;left:0;top:-1px;height:1.5px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.row:hover .row-line,.row.open .row-line{transform:scaleX(.44)}
+.row h3{font:inherit}
+.row-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto) 40px;gap:28px;align-items:center;width:100%;padding:38px 0}
+.r-title{display:block;font-family:var(--serif);text-transform:uppercase;font-size:clamp(32px,3.3vw,46px);line-height:.95;letter-spacing:-.02em;transition:color .3s}
+.r-desc{display:block;margin-top:10px;max-width:50ch;font-size:17px;color:#2a2a2a}
+.row:hover .r-title,.row.open .r-title{color:var(--ink)}
+.tags{display:grid;gap:5px;justify-items:start}
+.tag{display:flex;font-size:13.5px;line-height:1.15}
+.tag b{background:var(--ink);color:#fff;font-weight:500;padding:4px 7px}
+.tag i{font-style:normal;background:var(--ink-soft);color:var(--ink);padding:4px 8px}
+.arrow{width:38px;height:38px;justify-self:end;transition:transform .45s cubic-bezier(.2,.7,.2,1),color .3s}
+.row:hover .arrow{color:var(--ink)}
+.row.open .arrow{transform:rotate(90deg);color:var(--ink)}
+.row-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.2,.7,.2,1)}
+.row.open .row-body{grid-template-rows:1fr}
+.row-body>div{overflow:hidden}
+.row-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:48px;padding:0 0 42px;align-items:start}
+.r-left{display:grid;gap:22px}
+.viz{border:1px solid var(--ink);padding:16px;display:grid;gap:12px;align-content:start;font-size:15px;min-width:0}
+.viz-cap{color:var(--muted);font-size:13.5px}
+.viz-btns{display:flex;gap:8px;flex-wrap:wrap}
+.vb{border:1px solid var(--ink);color:var(--ink);padding:6px 12px;font-size:14px;text-decoration:none;background:none}
+.vb:hover{background:var(--ink-soft)}
+.vb:disabled{opacity:.45;cursor:default}
+.vb.on{background:var(--ink);color:#fff}
+.lz{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.lz li{border:1px solid var(--rule);padding:6px 10px;color:var(--muted)}
+.lz li.done{border-color:var(--ink);color:var(--ink)}
+.lz li.cur{background:var(--ink);border-color:var(--ink);color:#fff}
+.lz-msg{min-height:1.4em;color:var(--ink)}
+.term{margin:0;background:var(--ink);color:#fff;font:12.5px/1.55 ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;padding:14px 16px;min-height:262px;white-space:pre-wrap;overflow-wrap:anywhere}
+.term span{display:block}
+.term .t-sys{color:#b4b7f4}
+.term .t-tool{color:#d9dafc;opacity:.85}
+.term .t-in::after{content:"";display:inline-block;width:.55em;height:1em;vertical-align:-.15em;background:#fff;margin-left:2px;opacity:0}
+.term span:last-child.t-in::after{opacity:1}
+.mt{display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:18px;align-items:start}
+.mt-board{display:grid;grid-template-columns:repeat(8,1fr);border:1px solid var(--ink)}
+.mt-board button{aspect-ratio:1;display:grid;place-items:center;padding:0;background:#fcfcfc;color:var(--ink);font:clamp(17px,2.2vw,27px)/1 "Segoe UI Symbol","Apple Symbols","Noto Sans Symbols 2","DejaVu Sans",serif}
+.mt-board button.d{background:var(--ink-soft)}
+.mt-board button{position:relative}
+.mt-board button.lm{background:#d6d8fb}
+.mt-board button.d.lm{background:#c4c7f6}
+.mt-board button.ck{box-shadow:inset 0 0 0 3px var(--ink)}
+.mt-board button.t::after{content:"";position:absolute;width:26%;height:26%;border-radius:50%;background:var(--ink);opacity:.45}
+.mt-status{font-weight:600;color:var(--ink);min-height:1.35em}
+.mt-board button.sel{outline:2px solid var(--ink);outline-offset:-2px;background:#c9cbf8}
+.mt-side{display:grid;gap:12px}
+.mt-bars{display:grid;gap:5px;font-size:13px}
+.bar{display:grid;grid-template-columns:6.4em 1fr 3.2em;gap:8px;align-items:center}
+.bar span:first-child{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+.bar span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.bar i{height:9px;background:var(--ink-soft)}
+.bar i b{display:block;height:100%;background:var(--ink);transition:width .35s}
+.bar.best span{color:var(--ink)}
+.mt-out{color:var(--ink)}
+.mt-out code{font:600 14px ui-monospace,Menlo,Consolas,monospace}
+.kits{display:grid;gap:8px;min-height:104px;align-content:start}
+.kit{display:flex;align-items:center;gap:8px}
+.kit i{width:16px;height:16px;border:1px solid var(--ink)}
+.kit i.b{background:var(--ink)}
+.kit span:last-child{color:var(--muted)}
+.notes{list-style:none;display:grid;gap:12px;max-width:58ch}
+.notes li{position:relative;padding-left:24px}
+.notes li::before{content:"";position:absolute;left:0;top:.68em;width:12px;height:1px;background:var(--ink)}
+.r-link{align-self:end;justify-self:start;color:var(--ink)}
+.r-link a{display:inline-flex;gap:8px;align-items:center;text-decoration:underline;text-underline-offset:4px}
+.r-link span{color:var(--muted)}
+.r-link a{white-space:nowrap}
+.r-link svg{width:18px;height:18px;flex:none}
+
+/* Live path tracer */
+.demo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:48px;align-items:end}
+.demo-text{display:grid;gap:18px}
+.demo-text .h2{margin-bottom:6px}
+.demo-text small{font-size:14px;color:var(--muted);line-height:1.4}
+.demo-text small a{color:var(--ink)}
+.demo-view{position:relative;aspect-ratio:16/10;background:var(--ink-soft);border:1px solid var(--ink)}
+.demo-view pt-viewer{position:absolute;inset:0;display:block;width:100%;height:100%;background:var(--ink-soft)}
+.demo-view p{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:var(--ink);font-size:15px}
+
+/* Path */
+.steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.step{border-top:1px solid var(--rule);padding-top:30px;display:grid;gap:14px;align-content:start}
+.step.hl{border-top:1.5px solid var(--ink)}
+.step .n{font-family:var(--serif);color:var(--ink);font-size:clamp(52px,5vw,80px);line-height:.85;letter-spacing:-.03em}
+.step .when{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.step h3{font-family:var(--serif);font-weight:400;text-transform:uppercase;font-size:25px;line-height:1;letter-spacing:-.01em}
+.step p{font-size:16px}
+
+/* Call to action */
+.cta{position:relative;overflow:hidden;margin:clamp(120px,18vh,210px) var(--gut) 0;background:var(--ink);color:#fff;display:grid;place-items:center;text-align:center;min-height:clamp(440px,72vh,660px);padding:90px var(--gut)}
+.cta canvas{position:absolute;width:clamp(150px,21vw,300px)}
+.cta .c1{left:0;top:0}
+.cta .c2{right:0;bottom:0}
+.cta-in{position:relative;display:grid;justify-items:center;gap:20px}
+.cta h2{color:#fff;max-width:15ch}
+.cta p{color:#dcdcfb;max-width:42ch}
+.ticket{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:15px 30px;font-size:17px;text-decoration:none;color:inherit;transition:background .25s}
+.ticket svg.tk{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.cta .ticket:hover,.foot .ticket:hover{background:rgba(255,255,255,.1)}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.arch{justify-self:center;width:min(390px,80%);border-radius:999px 999px 0 0;overflow:hidden}
+.about-text{display:grid;gap:24px;max-width:48ch}
+.skills{display:grid;grid-template-columns:auto 1fr;gap:7px 20px;font-size:16px}
+.skills dt{color:var(--muted)}
+.follow{display:grid;gap:8px}
+.follow nav{display:flex;gap:24px;font-size:20px}
+.follow a{text-decoration:none}
+.follow a:hover{color:var(--ink)}
+
+/* In production */
+.quotes{border-bottom:1px solid var(--rule)}
+.quote{border-top:1px solid var(--rule);padding:58px 0;display:grid;gap:12px}
+.quote p{font-family:var(--serif);font-size:clamp(28px,2.9vw,42px);line-height:1.05;letter-spacing:-.02em;max-width:26ch}
+.quote span{font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+
+/* FAQ */
+.faq{border-bottom:1px solid var(--rule)}
+.faq details{border-top:1px solid var(--rule)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover,.faq details[open] summary{color:var(--ink)}
+.plus{position:relative;width:18px;height:18px;flex:none;color:var(--ink);transition:transform .35s}
+.plus::before,.plus::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.2px;background:currentColor}
+.plus::after{transform:rotate(90deg)}
+.faq details[open] .plus{transform:rotate(45deg)}
+.faq .ans{padding:0 0 28px;max-width:64ch;color:#2a2a2a}
+
+/* Footer */
+.foot{margin-top:clamp(120px,18vh,210px);background:var(--ink);color:#fff}
+.foot-body{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding:clamp(40px,8vh,90px) var(--gut) 44px}
+.foot h2{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:1;letter-spacing:-.025em;margin-bottom:28px}
+.foot-l{display:grid;gap:26px;justify-items:start}
+.foot .mail{font-size:17px;text-underline-offset:4px}
+.foot-r{display:grid;gap:14px;justify-items:end;text-align:right;font-size:15px;color:#dcdcfb}
+.foot-r nav{display:flex;gap:18px;color:#fff}
+.foot-r a{text-decoration:none}
+.foot-r a:hover{text-decoration:underline}
+
+/* Marquee */
+
+@media (max-width:1120px) and (min-width:821px){
+  .facts dl{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 22px}
+  .facts dl>div:last-child{grid-column:span 2}
+  .hero{height:calc(100svh - 176px)}
+}
+@media (max-width:1180px){
+  .mt{grid-template-columns:1fr}
+  .mt-board{max-width:330px}
+}
+@media (max-width:820px){
+  body{font-size:17px}
+  .brand{font-size:24px}
+  .hero{padding-top:112px;height:100svh;min-height:540px}
+  .avail{font-size:12.5px;gap:8px;white-space:normal;text-align:center;line-height:1.15}
+  .avail .dot{display:none}
+  .avail .go,.avail-f{display:none}
+  .facts{padding-top:22px}
+  .facts dl{grid-template-columns:1fr 1fr;gap:18px 16px}
+  .facts dl>div:last-child{grid-column:1/-1}
+  .hero-text{top:36%}
+  .hero h1{font-size:clamp(38px,11vw,64px)}
+  .cta{padding-top:150px}
+  .cta canvas{width:118px}
+  .m-grid{grid-template-columns:1fr}
+  .m-art{width:70%}
+  .break canvas{aspect-ratio:1.5 !important}
+  .row-head{grid-template-columns:minmax(0,1fr) 32px;gap:16px;padding:30px 0}
+  .tags{grid-column:1/-1;grid-row:2}
+  .arrow{width:30px;height:30px;grid-row:1;grid-column:2}
+  .row-inner{grid-template-columns:1fr;gap:22px}
+  .demo{grid-template-columns:1fr;gap:26px}
+  .demo-view{aspect-ratio:4/3}
+  .steps{grid-template-columns:1fr;gap:0}
+  .step{padding:26px 0 30px}
+  .about{grid-template-columns:1fr}
+  .arch{width:72%}
+  .foot-body{grid-template-columns:1fr}
+  .foot-r{justify-items:start;text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .avail,.nav{transition:none!important}
+  .js canvas.eng{clip-path:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="avail" id="avail" href="#contact"><span class="dot" aria-hidden="true"></span><b><span id="availText"></span><span class="avail-f" id="availField"></span></b><span class="go" id="availGo"></span></a>
+<header class="nav">
+  <a class="brand" href="#top">alex huang</a>
+  <div class="nav-r"><button id="langBtn" type="button">EN</button><button id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">MENU</button></div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="menu-close" id="menuClose" type="button">Fermer</button>
+  <nav id="menuLinks"></nav>
+</div>
+
+<main>
+  <section class="hero" id="top">
+    <div class="hero-art">
+      <canvas class="eng" data-scene="hero" aria-hidden="true"></canvas>
+      <div class="hero-text">
+        <p class="kicker" id="kicker"></p>
+        <h1 id="h1"></h1>
+        <div class="hero-act"><a class="ticket" id="heroBtn" href="#"></a><a href="https://www.linkedin.com/in/alex-huang-9a1704226" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Xelapte" target="_blank" rel="noopener">GitHub</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts" id="enbref"><dl id="facts"></dl></section>
+
+  <section class="manifesto" id="manifeste">
+    <div class="m-grid">
+      <div class="m-art"><canvas class="eng" data-scene="sphere" data-aspect="1" aria-hidden="true"></canvas></div>
+      <div class="m-text" id="bio"></div>
+    </div>
+    <p class="statement" id="statement"></p>
+  </section>
+
+  <div class="break" aria-hidden="true">
+    <canvas class="eng" data-scene="pano" data-aspect="3" data-aspect-m="1.7"></canvas>
+  </div>
+
+  <section class="sec" id="projets">
+    <div class="sec-head"><p class="eyebrow" id="prEyebrow"></p><h2 class="h2 sc" id="prTitle"></h2></div>
+    <div class="rows" id="rows"></div>
+  </section>
+
+  <section class="sec demo" id="demo">
+    <div class="demo-text">
+      <p class="eyebrow" id="dmEyebrow"></p>
+      <h2 class="h2 sc" id="dmTitle"></h2>
+      <p class="fade" id="dmText"></p>
+      <small id="dmCredit"></small>
+    </div>
+    <div class="demo-view" id="demoView"><p id="dmWait"></p></div>
+  </section>
+
+  <section class="sec" id="parcours">
+    <div class="sec-head"><p class="eyebrow" id="paEyebrow"></p><h2 class="h2" id="paTitle"></h2><p class="fade" id="paSub"></p></div>
+    <div class="steps" id="steps"></div>
+  </section>
+
+  <section class="cta" aria-labelledby="ctaTitle">
+    <canvas class="eng inv c1" data-scene="column" data-aspect="1" data-invert aria-hidden="true"></canvas>
+    <canvas class="eng inv c2" data-scene="spheres" data-aspect="1" data-invert aria-hidden="true"></canvas>
+    <div class="cta-in">
+      <h2 class="h2" id="ctaTitle"></h2>
+      <p id="ctaText"></p>
+      <a class="ticket" id="ctaBtn" href="#contact"></a>
+    </div>
+  </section>
+
+  <section class="sec about" id="apropos">
+    <div class="arch"><canvas class="eng" data-scene="arch" data-aspect="0.75" aria-hidden="true"></canvas></div>
+    <div class="about-text">
+      <p class="eyebrow" id="abEyebrow"></p>
+      <h2 class="h2" id="abTitle"></h2>
+      <p class="fade" id="abText"></p>
+      <dl class="skills" id="skills"></dl>
+      <div class="follow"><p class="eyebrow" id="abFollow"></p><nav id="abLinks" aria-label="Profils"></nav></div>
+    </div>
+  </section>
+
+  <section class="sec" id="production">
+    <div class="sec-head"><p class="eyebrow" id="poEyebrow"></p><h2 class="h2" id="poTitle"></h2></div>
+    <div class="quotes" id="quotes"></div>
+  </section>
+
+  <section class="sec" id="questions">
+    <div class="sec-head"><p class="eyebrow" id="faEyebrow"></p><h2 class="h2" id="faTitle"></h2></div>
+    <div class="faq" id="faq"></div>
+  </section>
+</main>
+
+<footer class="foot" id="contact">
+  <canvas class="eng" data-scene="footer" data-aspect="3.2" data-ramp="0.5" aria-hidden="true"></canvas>
+  <div class="foot-body">
+    <div class="foot-l">
+      <h2 id="ftTitle"></h2>
+      <a class="ticket" id="ftBtn" href="#"></a>
+      <a class="mail" id="ftMail" href="#"></a>
+    </div>
+    <div class="foot-r">
+      <span id="ftSocial"></span>
+      <nav id="ftLinks" aria-label="Profils"></nav>
+      <span id="ftCopy"></span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(() => {
+'use strict';
+document.documentElement.classList.add('js');
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ======================= Content (French and English) ======================= */
+const LINKS = { github: 'https://github.com/Xelapte', linkedin: 'https://www.linkedin.com/in/alex-huang-9a1704226', email: 'alexhuang505@gmail.com' };
+const C = {
+  fr: {
+    nav: { other: 'EN', otherLabel: 'Read in English', menu: 'MENU', close: 'FERMER' },
+    menu: [['#projets', 'Projets'], ['#parcours', 'Parcours'], ['#apropos', 'À propos'], ['#questions', 'Questions'], ['#contact', 'Contact']],
+    avail: { text: 'Je recherche un stage de mars 2027 à août 2027', field: ' en développement, IA et automatisation', go: "M'écrire", subject: 'Stage mars-août 2027' },
+    hero: { kicker: 'Étudiant en troisième année à Epitech Paris', h1: 'Alex Huang, développeur logiciel', btn: "M'écrire" },
+    facts: [['Recherche', 'Stage de 6 mois'], ['Disponibilité', 'De mars à août 2027'], ['Domaine', ['Développement logiciel', 'IA et automatisation', "Systèmes d'information"]], ['Formation', 'Epitech Paris, promo 2029'], ['Expérience', ['Les Pilotes, dev CRM (12 mois)', 'Leducq, dev principal (6 mois)']]],
+    bio: [
+      'Je suis en troisième année à Epitech (promo 2029). Les deux premières années, c\'était surtout du C sous Unix : mon propre shell, mon propre ls, une bibliothèque de grands nombres.',
+      "En 2025, j'ai passé six mois comme développeur principal sur le système d'information d'une maison de ventes parisienne. C'est là que je suis passé de la résolution de tickets à la responsabilité d'une architecture.",
+      "J'aime le code qu'on peut reprendre sans explications : des frontières claires, des messages d'erreur honnêtes, rien de malin à décrypter à 3 h du matin."
+    ],
+    statement: "Deux ans de C sous Unix. Six mois à construire le système d'information d'une maison de ventes. Un raytracer où chaque rayon compte. Et toujours la même règle : un code que quelqu'un d'autre peut reprendre sans moi.",
+    projects: { eyebrow: "Ce que j'ai construit", title: "Neuf projets, du shell au système d'information", role: 'Rôle', stack: 'Stack', repo: 'Voir le code sur GitHub' },
+    rows: [
+      ['Leducq SI', "Le système d'information d'une maison de ventes parisienne, de la demande d'estimation au mandat signé.", 'Développeur principal, stage', 'Airtable, Noloco, API REST',
+        ['Cycle hebdomadaire : lundi avec une équipe, du mardi au jeudi en développement, démo le vendredi.', "Les sept salariés l'utilisent chaque jour. Il libère 10 à 15 heures d'administratif par semaine.", "J'ai passé les deux dernières semaines à refactorer et à écrire un wiki pour que personne ne dépende de moi."],
+        'Système interne, pas de dépôt public.', null],
+      ['Verity', 'Le fact-checking en direct de 37 radios dans 13 pays, avec deux agents LLM.', 'En solo, hackathon', 'Next.js, Python, n8n',
+        ['faster-whisper transcrit chaque flux en direct, et n8n fait tourner deux agents.', "L'agent 1 découpe les transcriptions en sujets, l'agent 2 vérifie chaque affirmation par une recherche web.", 'Chaque station reçoit un score de crédibilité, par sujet.'],
+        null, 'https://github.com/Xelapte/MedIA-Hackaton'],
+      ['Sensai', 'Un assistant de code en ligne de commande sur un modèle local servi par Ollama, sans framework LLM.', 'En équipe : RAG, contexte, sessions', 'Python, Ollama, SQLite, Docker',
+        ["Un assistant qui lit, modifie et teste du code, avec des outils soumis à approbation, des personas développeur et relecteur, et une mémoire de projet.", "Ma partie principale : la recherche dans le code. Les fichiers sont découpés, vectorisés avec Ollama et retrouvés par similarité cosinus grâce à l'outil search_code.", "Le budget de contexte : quand la conversation approche de la limite, les anciens messages sont résumés, et l'occupation du contexte s'affiche après chaque tour.", "Aussi : le profil utilisateur, /history et /fork pour repartir d'un message antérieur, et l'image Docker d'Ollama."],
+        null, 'https://github.com/Xelapte/Sensai'],
+      ['my_torch', "Un réseau de neurones écrit à la main avec numpy, qui lit une position d'échecs et dit s'il y a échec, mat ou rien.", 'En binôme : données, entraînement, CLI', 'Python, numpy',
+        ['Ma partie : la CLI, la lecture des 723 019 positions, la sauvegarde et le chargement du réseau, et l\'entraînement.', 'Mini-batchs, entropie croisée, validation 80/20 et early stopping pour éviter le surapprentissage.', 'Une recherche en grille sur 12 architectures, puis un départage sur 200 000 positions : le réseau [769, 32, 4] atteint 72,07 % de précision en validation.', "La démo : une vraie partie d'échecs contre l'ordinateur, où le réseau entraîné analyse chaque position et se compare aux règles."],
+        null, 'https://github.com/Xelapte/my_torch'],
+      ['Raytracer', 'Un ray tracer et path tracer en C++17, avec des plugins chargés à l\'exécution.', 'Performances du moteur', 'C++17, CMake, SFML',
+        ['Réalisé à quatre. Ma partie : la boucle par pixel et par rayon, la profiler et réduire le coût de chaque rayon.', 'Formes, matériaux, textures et débruiteurs sont des plugins, avec un aperçu en direct SFML et ImGui.', 'Les gravures de cette page sont dessinées par un petit raytracer, ligne par ligne, dans votre navigateur.'],
+        null, 'https://github.com/Xelapte/raytracer'],
+      ['Zappy', 'Un jeu de survie en réseau : un serveur, une interface spectateur et des joueurs IA.', 'Client IA', 'C, C++, TCP',
+        ['Mon IA ne voit jamais la carte : seulement ce que montre Look et les broadcasts qu\'elle entend.', "Elle se nourrit avant la famine, réunit les pierres et rassemble l'équipe par broadcast pour monter de niveau.", 'La première équipe qui amène six joueurs au niveau maximum gagne.'],
+        null, 'https://github.com/Xelapte/zappy'],
+      ['CVRIE', "Du machine learning pour l'aide au diagnostic : un KNN sur radios thoraciques, un clustering de témoignages.", 'Projet de groupe', 'Python, scikit-learn',
+        ['Supervisé : nettoyer les radios, extraire des caractéristiques, entraîner un KNN qui signale la pneumonie.', 'Non supervisé : reconstruire un jeu de témoignages désordonné, puis le regrouper sans catégories fixes.'],
+        null, 'https://github.com/Xelapte/cvrie'],
+      ['Arcade', 'Un moteur d\'arcade qui charge ses jeux et ses rendus graphiques comme bibliothèques partagées.', 'Projet Epitech', 'C++, SDL2',
+        ['Le cœur ne connaît que deux interfaces : une pour le graphisme, une pour les jeux.', 'Livré avec un rendu SDL2, Snake et Démineur.'],
+        'Dépôt privé, code sur demande.', null],
+      ['The Plazza', 'Une simulation de pizzeria : des cuisines en processus séparés qui partagent leur stock par IPC.', 'Projet Epitech', 'C++, IPC',
+        ['La réception lit des commandes comme « regina XXL x2; fantasia M x3 ».', 'Chaque cuisine est un processus avec ses propres cuisiniers, et le stock vit en mémoire partagée.'],
+        'Dépôt privé, code sur demande.', null]
+    ],
+    demo: { eyebrow: 'En direct', title: 'Un path tracer qui tourne dans cette page', text: "Faites tourner la scène à la souris : l'image se recalcule rayon par rayon, puis s'affine tant que vous ne bougez plus.", credit: 'Moteur : path-tracer-web, de Sandes Savarimuthu (licence MIT), un portage WebGL2 des idées de son raytracer C++.', wait: 'Chargement du path tracer…', fail: "Ce navigateur ne permet pas d'afficher le path tracer (WebGL2 requis)." },
+    path: { eyebrow: 'Parcours', title: 'De la Piscine à la production', sub: "Chaque étape s'est terminée par quelque chose qui tourne.", steps: [
+      ['12 mois', 'Service civique, Les Pilotes', "Développeur CRM pour l'association Les Pilotes.", true],
+      ['2024', 'Entrée à Epitech', 'Pédagogie par projets, sans cours magistraux. Du C sous Unix dès la première semaine : mon propre shell, mon propre ls.', false],
+      ['2025', 'Deuxième année', 'C++ et algorithmique. Les premiers gros projets de groupe : le raytracer, puis Zappy.', false],
+      ['Juil.–déc. 2025', 'Stage chez Leducq', "Développeur principal sur le système d'information d'une maison de ventes parisienne.", true],
+      ['Juil. 2026', 'Hackathon MedIA', 'Verity, un fact-checker en direct pour la radio, construit seul en un week-end.', false],
+      ['Depuis 2026', 'Troisième année', "Sensai, un assistant de code IA en équipe, et my_torch, un réseau de neurones écrit à la main. Je cherche un stage de mars à août 2027.", false]
+    ] },
+    cta: { title: 'Votre prochain stagiaire est déjà passé en production', text: "Pendant mon stage, j'ai livré un système d'information que sept personnes utilisent chaque jour.", btn: "M'écrire" },
+    about: { eyebrow: 'À propos', title: 'Alex', text: "Je suis en troisième année à Epitech, à Paris. J'aime tenir un service de bout en bout : le modèle de données, le code, l'automatisation, et les gens qui l'utilisent au quotidien.", follow: 'Suivre mon travail',
+      skills: [['Langages', 'C, C++, Python, TypeScript, Rust, Bash, Haskell'], ['Web', 'React, Next.js, Node.js, Astro, Tailwind'], ['Données', 'Modélisation, SQL, API REST, Airtable, Noloco'], ['IA', 'LLM locaux (Ollama), RAG, n8n, réseaux de neurones (numpy), scikit-learn, Whisper'], ['Systèmes', 'Linux, sockets, multiprocessus et IPC'], ['Outils', 'Git, Make, CMake, Docker']] },
+    prod: { eyebrow: 'En production', title: 'Ce qui tourne déjà', items: [
+      ["La ressaisie a disparu. Sept personnes travaillent chaque jour dans le système, et l'administratif a gagné 10 à 15 heures par semaine.", 'Leducq · maison de ventes · 7 personnes'],
+      ['37 radios dans 13 pays, transcrites en direct, chaque affirmation vérifiée et sourcée.', 'Verity · hackathon MedIA · en solo'],
+      ['Une IA qui ne voit jamais la carte et ramène quand même son équipe au niveau supérieur.', 'Zappy · Epitech · client IA']
+    ] },
+    faq: { eyebrow: 'Questions', title: "Les questions qu'on me pose", items: [
+      ['Quel stage cherches-tu, et quand ?', "Un stage de six mois, de mars à août 2027, en développement logiciel, en IA et automatisation, ou en systèmes d'information."],
+      ['As-tu déjà travaillé en entreprise ?', "Oui : six mois chez Leducq, une maison de ventes parisienne, comme développeur principal sur son système d'information. Les sept salariés l'utilisent chaque jour. J'ai aussi fait douze mois de service civique à l'association Les Pilotes, comme développeur CRM."],
+      ['Seul ou en équipe ?', "Les deux. Verity en solo, le Raytracer à quatre, Zappy et CVRIE en groupe, et chez Leducq avec une démo à l'équipe chaque vendredi."],
+      ['Le code est-il public ?', 'Verity, Sensai, my_torch, le Raytracer, Zappy et CVRIE sont sur GitHub. Arcade et The Plazza sont privés : je peux les montrer sur demande.'],
+      ['Avec quelles technologies ?', 'Côté langages : C, C++, Python, TypeScript, Rust, Bash et Haskell. Côté web : React, Next.js et Node.js. Côté données : SQL, API REST, Airtable et Noloco.'],
+      ['Où es-tu basé ?', "À Paris, où j'étudie à Epitech."]
+    ] },
+    foot: { title: 'Parlez-moi de votre équipe.', btn: "M'écrire", social: 'Réseaux :' }
+  },
+  en: {
+    nav: { other: 'FR', otherLabel: 'Lire en français', menu: 'MENU', close: 'CLOSE' },
+    menu: [['#projets', 'Projects'], ['#parcours', 'Path'], ['#apropos', 'About'], ['#questions', 'Questions'], ['#contact', 'Contact']],
+    avail: { text: "I'm looking for an internship from March 2027 to August 2027", field: ' in software, AI and automation', go: 'Write to me', subject: 'Internship March-August 2027' },
+    hero: { kicker: 'Third-year student at Epitech Paris', h1: 'Alex Huang, software developer', btn: 'Write to me' },
+    facts: [['Looking for', '6-month internship'], ['Availability', 'March to August 2027'], ['Field', ['Software development', 'AI and automation', 'Information systems']], ['School', 'Epitech Paris, class of 2029'], ['Experience', ['Les Pilotes, CRM dev (12 months)', 'Leducq, lead dev (6 months)']]],
+    bio: [
+      "I'm in my third year at Epitech (class of 2029). The first two years were mostly C on Unix: my own shell, my own ls, a bignum library.",
+      "In 2025 I spent six months as lead developer on a Paris auction house's information system. That's where I went from closing tickets to owning an architecture.",
+      'I like code someone else can pick up without a walkthrough: clear boundaries, honest error messages, nothing clever to decode at 3am.'
+    ],
+    statement: "Two years of C on Unix. Six months building an auction house's information system. A raytracer where every ray counts. And always the same rule: code someone else can pick up without me.",
+    projects: { eyebrow: "What I've built", title: 'Nine projects, from a shell to an information system', role: 'Role', stack: 'Stack', repo: 'View the code on GitHub' },
+    rows: [
+      ['Leducq SI', 'The information system of a Paris auction house, from the first estimate request to the signed mandate.', 'Lead developer, internship', 'Airtable, Noloco, REST APIs',
+        ['Weekly cycle: Monday with one team, Tuesday to Thursday building, Friday demo.', 'All seven staff use it daily. It frees 10 to 15 hours of admin a week.', 'I spent the last two weeks refactoring and writing a wiki so nobody depends on me.'],
+        'Internal system, no public repo.', null],
+      ['Verity', 'Live fact-checking of 37 radio stations in 13 countries, with two LLM agents.', 'Solo, hackathon', 'Next.js, Python, n8n',
+        ['faster-whisper transcribes each stream live, and n8n runs two agents.', 'Agent 1 splits transcripts into news items, agent 2 checks each claim against live web search.', 'Each station gets a credibility score, by topic.'],
+        null, 'https://github.com/Xelapte/MedIA-Hackaton'],
+      ['Sensai', 'A command-line coding assistant on a local model served by Ollama, with no LLM framework.', 'Team: RAG, context, sessions', 'Python, Ollama, SQLite, Docker',
+        ['An assistant that reads, edits and tests code, with tools that ask for approval, developer and reviewer personas, and a project memory.', 'My main part: code search. Files are split into chunks, embedded with Ollama and found by cosine similarity through the search_code tool.', 'The context budget: when the conversation nears the limit, older messages are summarised, and context usage is shown after each turn.', 'Also: the user profile, /history and /fork to branch from an earlier message, and the Ollama Docker image.'],
+        null, 'https://github.com/Xelapte/Sensai'],
+      ['my_torch', 'A neural network written by hand with numpy that reads a chess position and tells check, checkmate or nothing.', 'Pair: data, training, CLI', 'Python, numpy',
+        ['My part: the CLI, loading the 723,019 positions, saving and loading the network, and training.', 'Mini-batches, cross-entropy, an 80/20 validation split and early stopping against overfitting.', 'A grid search over 12 architectures, then a run-off on 200,000 positions: the [769, 32, 4] network reaches 72.07% validation accuracy.', 'The demo: a real game of chess against the computer, where the trained network analyses every position and is checked against the rules.'],
+        null, 'https://github.com/Xelapte/my_torch'],
+      ['Raytracer', 'A C++17 ray and path tracer with plugins loaded at runtime.', 'Engine performance', 'C++17, CMake, SFML',
+        ['Built by a team of four. My part was the per-pixel, per-ray loop: profiling it and cutting the cost of each ray.', 'Shapes, materials, textures and denoisers are plugins, with a live SFML and ImGui preview.', 'The engravings on this page are drawn by a small raytracer, line by line, in your browser.'],
+        null, 'https://github.com/Xelapte/raytracer'],
+      ['Zappy', 'A networked survival game: a server, a spectator GUI and AI players.', 'AI client', 'C, C++, TCP',
+        ['My AI never sees the map: only what Look shows and the broadcasts it hears.', 'It eats before it starves, gathers stones, and rallies teammates over broadcast to level up together.', 'The first team to bring six players to the top level wins.'],
+        null, 'https://github.com/Xelapte/zappy'],
+      ['CVRIE', 'Machine learning for diagnosis support: KNN on chest X-rays, clustering of patient testimonies.', 'Group project', 'Python, scikit-learn',
+        ['Supervised: clean the X-rays, extract features, train a KNN that flags pneumonia.', 'Unsupervised: rebuild a messy set of patient testimonies, then cluster it without fixed categories.'],
+        null, 'https://github.com/Xelapte/cvrie'],
+      ['Arcade', 'An arcade engine that loads its games and renderers as shared libraries.', 'Epitech project', 'C++, SDL2',
+        ['The core only knows two interfaces: one for graphics, one for games.', 'Ships with an SDL2 renderer, Snake and Minesweeper.'],
+        'Private repo, code on request.', null],
+      ['The Plazza', 'A pizzeria simulation: kitchens run as separate processes and share their stock over IPC.', 'Epitech project', 'C++, IPC',
+        ["The reception reads orders like 'regina XXL x2; fantasia M x3'.", 'Each kitchen is its own process with its own cooks, and the stock lives in shared memory.'],
+        'Private repo, code on request.', null]
+    ],
+    demo: { eyebrow: 'Live', title: 'A path tracer running in this page', text: 'Drag to orbit the scene: the image is recomputed ray by ray, then refines for as long as you hold still.', credit: 'Engine: path-tracer-web by Sandes Savarimuthu (MIT license), a WebGL2 port of the ideas in his C++ raytracer.', wait: 'Loading the path tracer…', fail: "This browser can't display the path tracer (WebGL2 required)." },
+    path: { eyebrow: 'Path', title: 'From the Piscine to production', sub: 'Every step ended with something that runs.', steps: [
+      ['12 months', 'Civic service, Les Pilotes', 'CRM developer for the Les Pilotes association (French service civique).', true],
+      ['2024', 'Entered Epitech', 'Project-based, no lectures. C on Unix from the first week: my own shell, my own ls.', false],
+      ['2025', 'Second year', 'C++ and algorithmics. The first big group projects: the raytracer, then Zappy.', false],
+      ['Jul–Dec 2025', 'Internship at Leducq', "Lead developer on a Paris auction house's information system.", true],
+      ['Jul 2026', 'MedIA hackathon', 'Verity, a live fact-checker for radio, built solo over a weekend.', false],
+      ['2026–now', 'Third year', 'Sensai, a team-built AI coding assistant, and my_torch, a neural network written by hand. Looking for an internship from March to August 2027.', false]
+    ] },
+    cta: { title: 'Your next intern has already shipped to production', text: 'During my internship I shipped an information system that seven people use every day.', btn: 'Write to me' },
+    about: { eyebrow: 'About', title: 'Alex', text: "I'm in my third year at Epitech in Paris. I like owning a service end to end: the data model, the code, the automation, and the people who use it every day.", follow: 'Follow my work',
+      skills: [['Languages', 'C, C++, Python, TypeScript, Rust, Bash, Haskell'], ['Web', 'React, Next.js, Node.js, Astro, Tailwind'], ['Data', 'Modeling, SQL, REST APIs, Airtable, Noloco'], ['AI', 'Local LLMs (Ollama), RAG, n8n, neural networks (numpy), scikit-learn, Whisper'], ['Systems', 'Linux, sockets, multiprocessing and IPC'], ['Tools', 'Git, Make, CMake, Docker']] },
+    prod: { eyebrow: 'In production', title: "What's already running", items: [
+      ['Double entry is gone. Seven people work in the system every day, and admin got back 10 to 15 hours a week.', 'Leducq · auction house · 7 people'],
+      ['37 radio stations in 13 countries, transcribed live, every claim checked and sourced.', 'Verity · MedIA hackathon · solo'],
+      ['An AI that never sees the map and still brings its team to the next level.', 'Zappy · Epitech · AI client']
+    ] },
+    faq: { eyebrow: 'Questions', title: 'Questions people ask me', items: [
+      ['What internship are you looking for, and when?', 'A six-month internship, from March to August 2027, in software development, AI and automation, or information systems.'],
+      ['Have you worked in a company?', 'Yes: six months at Leducq, a Paris auction house, as lead developer on its information system. All seven staff use it every day. I also did twelve months of civic service (service civique) at the Les Pilotes association, as a CRM developer.'],
+      ['Solo or in a team?', 'Both. Verity solo, the Raytracer as a team of four, Zappy and CVRIE in groups, and at Leducq with a demo to the team every Friday.'],
+      ['Is the code public?', 'Verity, Sensai, my_torch, the Raytracer, Zappy and CVRIE are on GitHub. Arcade and The Plazza are private; I can show them on request.'],
+      ['Which technologies?', 'Languages: C, C++, Python, TypeScript, Rust, Bash and Haskell. Web: React, Next.js and Node.js. Data: SQL, REST APIs, Airtable and Noloco.'],
+      ['Where are you based?', 'In Paris, where I study at Epitech.']
+    ] },
+    foot: { title: 'Tell me about your team.', btn: 'Write to me', social: 'Socials:' }
+  }
+};
+
+/* ======================= Rendering the text ======================= */
+const ARROW = '<svg class="arrow" viewBox="0 0 38 38" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M7 31 31 7M12 7h19v19"/></svg>';
+const ARROW_SM = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 15 15 5M7 5h8v8"/></svg>';
+let lang = (() => { try { const s = localStorage.getItem('lang'); if (s === 'fr' || s === 'en') return s; } catch (e) { /* storage unavailable */ } return /^en/i.test(navigator.language || '') ? 'en' : 'fr'; })();
+
+const rv = (t) => '<span class="rv"><span>' + esc(t) + '</span></span>';
+function splitChars(text) {
+  let i = 0;
+  return '<span aria-hidden="true">' + text.split(' ').map((w) => '<span class="w">' + Array.from(w).map((c) => '<span class="ch" style="--i:' + (i++) + '">' + esc(c) + '</span>').join('') + '</span>').join(' ') + '</span>';
+}
+function render() {
+  const t = C[lang];
+  document.documentElement.lang = lang;
+  $('#langBtn').textContent = t.nav.other; $('#langBtn').setAttribute('aria-label', t.nav.otherLabel);
+  $('#menuBtn').textContent = t.nav.menu; $('#menuClose').textContent = t.nav.close;
+  $('#menuLinks').innerHTML = t.menu.map((m) => '<a href="' + m[0] + '">' + esc(m[1]) + '</a>').join('');
+  $('#kicker').textContent = t.hero.kicker;
+  $('#h1').innerHTML = splitChars(t.hero.h1); $('#h1').setAttribute('aria-label', t.hero.h1);
+  const mailto = 'mailto:' + LINKS.email + '?subject=' + encodeURIComponent(t.avail.subject);
+  $('#availText').textContent = t.avail.text; $('#availField').textContent = t.avail.field; $('#availGo').textContent = t.avail.go; $('#avail').href = mailto;
+  $('#heroBtn').textContent = t.hero.btn; $('#heroBtn').href = mailto;
+  $('#facts').innerHTML = t.facts.map((f) => '<div><dt>' + esc(f[0]) + '</dt><dd>' + (Array.isArray(f[1]) ? f[1].map((l) => '<span>' + esc(l) + '</span>').join('') : esc(f[1])) + '</dd></div>').join('');
+  $('#bio').innerHTML = t.bio.map((p) => '<p class="fade">' + esc(p) + '</p>').join('');
+  $('#statement').innerHTML = t.statement.split(' ').map((w) => '<span class="wd">' + esc(w) + '</span>').join(' ');
+  $('#prEyebrow').textContent = t.projects.eyebrow; $('#prTitle').innerHTML = rv(t.projects.title);
+  $('#rows').innerHTML = t.rows.map((r, i) =>
+    '<div class="row' + (i === 0 ? ' open' : '') + '"><span class="row-line"></span><h3><button class="row-head" type="button" aria-expanded="' + (i === 0) + '" aria-controls="rb' + i + '">' +
+    '<span><span class="r-title">' + esc(r[0]) + '</span><span class="r-desc">' + esc(r[1]) + '</span></span>' +
+    '<span class="tags"><span class="tag"><b>' + esc(t.projects.role) + '</b><i>' + esc(r[2]) + '</i></span><span class="tag"><b>' + esc(t.projects.stack) + '</b><i>' + esc(r[3]) + '</i></span></span>' +
+    ARROW + '</button></h3>' +
+    '<div class="row-body" id="rb' + i + '"><div><div class="row-inner"><div class="r-left"><ul class="notes">' + r[4].map((n) => '<li>' + esc(n) + '</li>').join('') + '</ul>' +
+    '<p class="r-link">' + (r[6] ? '<a href="' + esc(r[6]) + '" target="_blank" rel="noopener">' + esc(t.projects.repo) + ARROW_SM + '</a>' : '<span>' + esc(r[5]) + '</span>') + '</p></div><div class="viz" data-viz="' + i + '"></div></div></div></div></div>'
+  ).join('');
+  vizStops.forEach((f) => f()); vizStops = [];
+  $$('#rows .row.open').forEach(initViz);
+  $('#dmEyebrow').textContent = t.demo.eyebrow; $('#dmTitle').innerHTML = rv(t.demo.title); $('#dmText').textContent = t.demo.text;
+  $('#dmCredit').innerHTML = esc(t.demo.credit) + ' <a href="https://github.com/Landry-16/path-tracer-web" target="_blank" rel="noopener">GitHub</a>';
+  const dw = $('#dmWait'); if (dw) dw.textContent = dw.dataset.failed ? t.demo.fail : t.demo.wait;
+  $('#paEyebrow').textContent = t.path.eyebrow; $('#paTitle').innerHTML = rv(t.path.title); $('#paSub').textContent = t.path.sub;
+  $('#steps').innerHTML = t.path.steps.map((s, i) => '<div class="step' + (s[3] ? ' hl' : '') + '"><span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="when">' + esc(s[0]) + '</span><h3>' + esc(s[1]) + '</h3><p class="fade">' + esc(s[2]) + '</p></div>').join('');
+  $('#ctaTitle').innerHTML = rv(t.cta.title); $('#ctaText').textContent = t.cta.text;
+  $('#ctaBtn').textContent = t.cta.btn; $('#ctaBtn').href = mailto;
+  $('#abEyebrow').textContent = t.about.eyebrow; $('#abTitle').innerHTML = rv(t.about.title); $('#abText').textContent = t.about.text;
+  $('#skills').innerHTML = t.about.skills.map((s) => '<dt>' + esc(s[0]) + '</dt><dd>' + esc(s[1]) + '</dd>').join('');
+  $('#abFollow').textContent = t.about.follow;
+  const profiles = '<a href="' + LINKS.github + '" target="_blank" rel="noopener">GitHub</a><a href="' + LINKS.linkedin + '" target="_blank" rel="noopener">LinkedIn</a>';
+  $('#abLinks').innerHTML = profiles;
+  $('#poEyebrow').textContent = t.prod.eyebrow; $('#poTitle').innerHTML = rv(t.prod.title);
+  $('#quotes').innerHTML = t.prod.items.map((q) => '<div class="quote"><p class="fade">' + esc(q[0]) + '</p><span>' + esc(q[1]) + '</span></div>').join('');
+  $('#faEyebrow').textContent = t.faq.eyebrow; $('#faTitle').innerHTML = rv(t.faq.title);
+  $('#faq').innerHTML = t.faq.items.map((f) => '<details><summary>' + esc(f[0]) + '<span class="plus" aria-hidden="true"></span></summary><p class="ans">' + esc(f[1]) + '</p></details>').join('');
+  $('#ftTitle').textContent = t.foot.title;
+  $('#ftBtn').textContent = t.foot.btn; $('#ftBtn').href = mailto;
+  $('#ftMail').textContent = LINKS.email; $('#ftMail').href = 'mailto:' + LINKS.email;
+  $('#ftSocial').textContent = t.foot.social; $('#ftLinks').innerHTML = profiles;
+  $('#ftCopy').textContent = '© ' + new Date().getFullYear() + ' Alex Huang';
+  observeReveals(); tickets(); updateStatement();
+}
+
+/* Reveals: headings slide up, paragraphs go from grey to ink. */
+let io = null;
+function observeReveals() {
+  if (!('IntersectionObserver' in window) || reduce) { $$('.rv,.fade').forEach((e) => e.classList.add('in')); return; }
+  if (io) io.disconnect();
+  io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
+  $$('.rv,.fade').forEach((e) => io.observe(e));
+}
+/* The big statement turns black word by word as it scrolls through the screen. */
+function updateStatement() {
+  const el = $('#statement'); if (!el) return;
+  const words = el.querySelectorAll('.wd');
+  if (reduce) { words.forEach((w) => w.classList.add('on')); return; }
+  const r = el.getBoundingClientRect(), vh = innerHeight;
+  const p = clamp((vh * 0.88 - r.top) / (r.height + vh * 0.4), 0, 1);
+  const n = Math.floor(p * (words.length + 1));
+  words.forEach((w, i) => w.classList.toggle('on', i < n));
+}
+/* Buttons with notched corners, drawn to their exact size. */
+function tickets() {
+  $$('.ticket').forEach((el) => {
+    let svg = el.querySelector('svg.tk');
+    if (!svg) { svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('class', 'tk'); svg.setAttribute('aria-hidden', 'true'); el.appendChild(svg); }
+    const w = el.offsetWidth, h = el.offsetHeight, r = 7, a = r - 0.5;
+    if (!w) return;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.innerHTML = '<path d="M' + r + ' .5H' + (w - r) + 'A' + a + ' ' + a + ' 0 0 0 ' + (w - 0.5) + ' ' + r + 'V' + (h - r) + 'A' + a + ' ' + a + ' 0 0 0 ' + (w - r) + ' ' + (h - 0.5) + 'H' + r + 'A' + a + ' ' + a + ' 0 0 0 .5 ' + (h - r) + 'V' + r + 'A' + a + ' ' + a + ' 0 0 0 ' + r + ' .5Z" fill="none" stroke="currentColor" stroke-width="1"/>';
+  });
+}
+
+/* ======================= The engraving raytracer ======================= */
+const INK = [42, 46, 205], PAPER = [252, 252, 252];
+const norm3 = (v) => { const l = Math.hypot(v[0], v[1], v[2]); return [v[0] / l, v[1] / l, v[2] / l]; };
+const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const reflect = (d, n) => { const k = 2 * dot(d, n); return [d[0] - k * n[0], d[1] - k * n[1], d[2] - k * n[2]]; };
+const LD = norm3([-0.5, 0.8, 0.42]);
+const FLOOR = { k: 'f', id: 1 };
+
+const sph = (c, r, m) => ({ k: 's', c, r, m: m ? 1 : 0 });
+const bx = (a, b) => ({ k: 'b', min: a, max: b });
+function col(x, z, r, h, fl) {
+  const w = r * 1.6;
+  return { k: 'g', min: [x - w, 0, z - w], max: [x + w, h + 0.38, z + w], parts: [
+    { k: 'c', x, z, r, y0: 0.2, y1: h, fl: fl || 18 },
+    bx([x - r * 1.45, 0, z - r * 1.45], [x + r * 1.45, 0.2, z + r * 1.45]),
+    bx([x - r * 1.28, h, z - r * 1.28], [x + r * 1.28, h + 0.22, z + r * 1.28]),
+    bx([x - w, h + 0.22, z - w], [x + w, h + 0.38, z + w])
+  ] };
+}
+function mk(objs, cam) { let id = 2; objs.forEach((o) => { if (o.k === 'g') o.parts.forEach((p) => { p.id = id++; }); else o.id = id++; }); return { objs, cam }; }
+const SCENES = {
+  hero(a) {
+    const narrow = a < 1.25, X = narrow ? 2.5 : 5.2, o = [];
+    [-5.2, -7.8, -10.4, -13].forEach((z) => o.push(col(-X, z, 0.3, 3.6)));
+    [-5.5, -8.1, -10.7, -13.3].forEach((z) => o.push(col(X, z, 0.3, 3.6)));
+    o.push(bx([-X - 0.55, 3.98, -13.6], [-X + 0.55, 4.42, -4.6]), bx([X - 0.55, 3.98, -13.9], [X + 0.55, 4.42, -4.9]));
+    o.push(sph([X * 0.46, 0.64, -3.8], 0.64, 1), sph([-X * 0.5, 0.46, -4.6], 0.46), sph([0.9, 0.3, -6.6], 0.3));
+    const S = mk(o, narrow ? { eye: [0, 1.55, 6.5], yaw: 0, pitch: 0, shift: 0.15, fov: 44 } : { eye: [0, 1.55, 3], yaw: 0, pitch: 0, shift: 0.12, fov: 36 });
+    S.clear = narrow ? [0.5, 0.37, 0.62, 0.2] : [0.5, 0.41, 0.34, 0.3];
+    return S;
+  },
+  sphere() { return mk([bx([-0.6, 0, -4.6], [0.6, 0.92, -3.4]), bx([-0.74, 0.92, -4.74], [0.74, 1.04, -3.26]), sph([0, 1.6, -4], 0.56, 1)], { eye: [0.35, 1.6, 0.3], yaw: 0.08, pitch: -0.085, fov: 36 }); },
+  column() { return mk([col(0, -4, 0.42, 3.1, 20), sph([0.95, 0.3, -3.2], 0.3)], { eye: [1.7, 1.75, 0.6], yaw: 0.34, pitch: 0.02, fov: 46 }); },
+  spheres() { return mk([sph([0, 0.78, -4.6], 0.78, 1), sph([-1.35, 0.46, -4.1], 0.46), sph([1.2, 0.3, -3.7], 0.3), sph([0.55, 0.18, -2.9], 0.18)], { eye: [0, 0.95, 0.4], yaw: 0, pitch: -0.06, fov: 34 }); },
+  arch() {
+    const o = [];
+    for (let z = -2.6; z > -17; z -= 2.4) { o.push(col(-1.9, z, 0.24, 3.3, 16)); o.push(col(1.9, z, 0.24, 3.3, 16)); }
+    o.push(bx([-2.3, 3.68, -17.2], [-1.5, 4.0, -2.2]), bx([1.5, 3.68, -17.2], [2.3, 4.0, -2.2]), sph([0, 0.8, -8], 0.8, 1));
+    return mk(o, { eye: [0, 1.5, 1.5], yaw: 0, pitch: 0.06, fov: 52 });
+  },
+  pano(a) {
+    const o = [];
+    for (let x = -12; x <= 12.01; x += 2.4) o.push(col(x, -9, 0.32, 3.6));
+    o.push(bx([-12.7, 3.98, -9.56], [12.7, 4.42, -8.44]));
+    o.push(col(-6.6, -5.4, 0.34, 3.6, 20), col(6.6, -5.4, 0.34, 3.6, 20));
+    o.push(sph([-3.1, 0.95, -4.2], 0.95, 1), sph([2.7, 0.62, -3.1], 0.62, 1), sph([0.3, 0.45, -5], 0.45), sph([-0.9, 0.28, -2.3], 0.28), sph([4.5, 0.36, -4.6], 0.36), sph([-5.2, 0.34, -3.4], 0.34));
+    o.push(bx([0.9, 0, -7.2], [2.1, 0.8, -6]), sph([1.5, 1.25, -6.6], 0.45, 1));
+    // Level camera with the horizon mid-frame, so the floor and every sphere sit fully inside the picture.
+    return mk(o, a < 2.2 ? { eye: [0, 1.55, 7], yaw: 0, pitch: 0, shift: 0, fov: 32 } : { eye: [0, 1.55, 3], yaw: 0, pitch: 0, shift: 0, fov: 34 });
+  },
+  footer() { const s = SCENES.hero(2.4); s.clear = null; s.cam = { eye: [0, 0.95, 5], yaw: 0, pitch: 0, shift: 0.2, fov: 30 }; return s; }
+};
+
+function hitSphere(s, o, d) {
+  const ox = o[0] - s.c[0], oy = o[1] - s.c[1], oz = o[2] - s.c[2];
+  const b = ox * d[0] + oy * d[1] + oz * d[2], disc = b * b - (ox * ox + oy * oy + oz * oz - s.r * s.r);
+  if (disc < 0) return Infinity;
+  const sq = Math.sqrt(disc); let t = -b - sq; if (t < 1e-4) t = -b + sq;
+  return t > 1e-4 ? t : Infinity;
+}
+function hitCyl(c, o, d) {
+  const dx = o[0] - c.x, dz = o[2] - c.z, a = d[0] * d[0] + d[2] * d[2];
+  if (a < 1e-9) return Infinity;
+  const b = dx * d[0] + dz * d[2], cc = dx * dx + dz * dz - c.r * c.r, disc = b * b - a * cc;
+  if (disc < 0) return Infinity;
+  const sq = Math.sqrt(disc);
+  let t = (-b - sq) / a;
+  if (t > 1e-4) { const y = o[1] + t * d[1]; if (y >= c.y0 && y <= c.y1) return t; }
+  t = (-b + sq) / a;
+  if (t > 1e-4) { const y = o[1] + t * d[1]; if (y >= c.y0 && y <= c.y1) return t; }
+  return Infinity;
+}
+function hitBox(bb, o, d) {
+  let t0 = -Infinity, t1 = Infinity;
+  for (let k = 0; k < 3; k++) {
+    if (Math.abs(d[k]) < 1e-9) { if (o[k] < bb.min[k] || o[k] > bb.max[k]) return Infinity; continue; }
+    let ta = (bb.min[k] - o[k]) / d[k], tb = (bb.max[k] - o[k]) / d[k];
+    if (ta > tb) { const s = ta; ta = tb; tb = s; }
+    if (ta > t0) t0 = ta; if (tb < t1) t1 = tb;
+    if (t0 > t1) return Infinity;
+  }
+  if (t1 < 1e-4) return Infinity;
+  return t0 > 1e-4 ? t0 : t1;
+}
+function hitObj(ob, o, d) { return ob.k === 's' ? hitSphere(ob, o, d) : ob.k === 'c' ? hitCyl(ob, o, d) : hitBox(ob, o, d); }
+function trace(S, o, d) {
+  let bt = Infinity, bo = null;
+  for (const ob of S.objs) {
+    if (ob.k === 'g') {
+      const tg = hitBox(ob, o, d);
+      if (tg === Infinity || tg > bt) continue;
+      for (const p of ob.parts) { const t = hitObj(p, o, d); if (t < bt) { bt = t; bo = p; } }
+    } else { const t = hitObj(ob, o, d); if (t < bt) { bt = t; bo = ob; } }
+  }
+  if (d[1] < -1e-6) { const t = -o[1] / d[1]; if (t > 1e-4 && t < bt) { bt = t; bo = FLOOR; } }
+  return bo ? { t: bt, ob: bo } : null;
+}
+function normalOf(ob, p) {
+  if (ob === FLOOR) return [0, 1, 0];
+  if (ob.k === 's') return [(p[0] - ob.c[0]) / ob.r, (p[1] - ob.c[1]) / ob.r, (p[2] - ob.c[2]) / ob.r];
+  if (ob.k === 'c') return [(p[0] - ob.x) / ob.r, 0, (p[2] - ob.z) / ob.r];
+  let best = Infinity, n = [0, 1, 0];
+  for (let k = 0; k < 3; k++) {
+    const a = Math.abs(p[k] - ob.min[k]), b = Math.abs(p[k] - ob.max[k]);
+    if (a < best) { best = a; n = [0, 0, 0]; n[k] = -1; }
+    if (b < best) { best = b; n = [0, 0, 0]; n[k] = 1; }
+  }
+  return n;
+}
+function lum(S, d, hit, p, n, depth) {
+  const ob = hit.ob, lift = [p[0] + n[0] * 1e-3, p[1] + n[1] * 1e-3, p[2] + n[2] * 1e-3];
+  const shadow = trace(S, lift, LD) !== null;
+  if (ob === FLOOR) {
+    const light = ((Math.floor(p[0] * 0.8) + Math.floor(p[2] * 0.8)) & 1) === 0;
+    return (light ? 0.97 : 0.66) * (shadow ? 0.32 : 0.32 + 0.68 * LD[1]);
+  }
+  if (ob.k === 's' && ob.m) {
+    const rd = reflect(d, n);
+    let rl = 1;
+    if (depth < 2) {
+      const h2 = trace(S, lift, rd);
+      if (h2) { const p2 = [lift[0] + rd[0] * h2.t, lift[1] + rd[1] * h2.t, lift[2] + rd[2] * h2.t]; rl = lum(S, rd, h2, p2, normalOf(h2.ob, p2), depth + 1); rl += (1 - rl) * smooth(14, 34, h2.t); }
+    }
+    let L = 0.1 + 0.75 * rl;
+    if (!shadow) L += Math.pow(Math.max(0, dot(rd, LD)), 60) * 0.6;
+    return L;
+  }
+  let nn = n;
+  if (ob.k === 'c') { const ph = Math.atan2(n[2], n[0]), al = 0.45 * Math.sin(ph * ob.fl), ca = Math.cos(al), sa = Math.sin(al); nn = [n[0] * ca - n[2] * sa, 0, n[0] * sa + n[2] * ca]; }
+  const diff = shadow ? 0 : Math.max(0, dot(nn, LD));
+  let L = 0.95 * (0.34 + 0.66 * diff);
+  if (ob.k === 's' && !shadow) L += Math.pow(Math.max(0, dot(reflect(d, n), LD)), 40) * 0.5;
+  return L;
+}
+/* One row of the engraving: line thickness follows darkness, lines follow the form, outlines where objects change. */
+function engraver(S, W, H, s, paper, ink, ramp) {
+  const cam = S.cam, F = (H / 2) / Math.tan(cam.fov * Math.PI / 360), SP = 3.1 * s;
+  const cyw = Math.cos(cam.yaw), syw = Math.sin(cam.yaw), cp = Math.cos(cam.pitch), spi = Math.sin(cam.pitch), eye = cam.eye, shift = cam.shift || 0, clr = S.clear;
+  let prev = new Int16Array(W).fill(-1), cur = new Int16Array(W);
+  return function row(y, D) {
+    for (let x = 0; x < W; x++) {
+      const u = (x + 0.5 - W / 2) / F, v = -(y + 0.5 - H / 2) / F + shift;
+      const v2 = v * cp + spi, w2 = v * spi - cp;
+      const u3 = u * cyw + w2 * syw, w3 = -u * syw + w2 * cyw;
+      const l = Math.hypot(u3, v2, w3), d = [u3 / l, v2 / l, w3 / l];
+      const hit = trace(S, eye, d);
+      let id = 0, L = 1, h = y / SP;
+      if (hit) {
+        id = hit.ob.id;
+        const p = [eye[0] + d[0] * hit.t, eye[1] + d[1] * hit.t, eye[2] + d[2] * hit.t], n = normalOf(hit.ob, p);
+        L = lum(S, d, hit, p, n, 0);
+        if (hit.ob.k === 's') h = Math.asin(clamp(n[1], -1, 1)) * (hit.ob.r * F / hit.t) / SP;
+        else if (hit.ob.k === 'c') h = Math.atan2(n[2], n[0]) * (hit.ob.r * F / hit.t) / SP;
+        L += (1 - L) * smooth(14, 34, hit.t);
+      }
+      let dk = clamp((0.97 - L) * 1.05, 0, 1);
+      if (id !== 0 && L < 0.985) dk = Math.max(dk, 0.07);
+      let keep = 1;
+      if (clr) { const ex = (x / W - clr[0]) / clr[2], ey = (y / H - clr[1]) / clr[3]; keep = smooth(0.5, 1, ex * ex + ey * ey); dk *= keep; }
+      if (ramp > 0) dk = Math.max(dk, smooth(ramp, 0.97, y / H));
+      let a = 0;
+      if (dk > 0.001) {
+        const q = Math.abs(h - Math.floor(h) - 0.5) * 2;
+        a = clamp((dk - q) * 4 + 0.5, 0, 1);
+        if (dk > 0.55) { const h2 = (x - y) * 0.7 / SP, q2 = Math.abs(h2 - Math.floor(h2) - 0.5) * 2; a = Math.max(a, clamp(((dk - 0.55) * 1.6 - q2) * 4 + 0.5, 0, 1)); }
+        a = Math.max(a, smooth(0.85, 1, dk));
+      }
+      cur[x] = id;
+      if (keep > 0.5 && ((x > 0 && cur[x - 1] !== id) || (prev[x] !== -1 && prev[x] !== id))) a = Math.max(a, 0.85 * keep);
+      const k = (y * W + x) * 4;
+      D[k] = paper[0] + (ink[0] - paper[0]) * a; D[k + 1] = paper[1] + (ink[1] - paper[1]) * a; D[k + 2] = paper[2] + (ink[2] - paper[2]) * a; D[k + 3] = 255;
+    }
+    const tmp = prev; prev = cur; cur = tmp;
+  };
+}
+
+/* One canvas at a time, a few milliseconds per frame, so the page stays smooth while the plates draw themselves. */
+const queue = [];
+let pumping = false;
+function enqueue(cv) {
+  if (cv._state === 'queued' || cv._state === 'busy') return;
+  const box = cv.getBoundingClientRect();
+  if (box.width < 4 || box.height < 4) return;
+  const s0 = Math.min(devicePixelRatio || 1, /^(hero|footer|pano)$/.test(cv.dataset.scene) ? 1.5 : 2);
+  const s = Math.min(s0, 1800 / box.width), W = Math.round(box.width * s), H = Math.round(box.height * s);
+  const inv = cv.hasAttribute('data-invert'), paper = inv ? INK : PAPER, ink = inv ? PAPER : INK;
+  cv._cssW = box.width; cv._state = 'queued';
+  queue.push({ cv, W, H, y: 0, img: new ImageData(W, H), row: engraver(SCENES[cv.dataset.scene](W / H), W, H, s, paper, ink, parseFloat(cv.dataset.ramp || '0')) });
+  if (!pumping) { pumping = true; requestAnimationFrame(pump); }
+}
+function pump() {
+  const job = queue[0];
+  if (!job) { pumping = false; return; }
+  job.cv._state = 'busy';
+  const t0 = performance.now(), y0 = job.y, budget = reduce ? 1e9 : 11;
+  while (job.y < job.H && performance.now() - t0 < budget) { job.row(job.y, job.img.data); job.y++; }
+  if (job.y >= job.H) {
+    job.cv.width = job.W; job.cv.height = job.H; job.cv.getContext('2d').putImageData(job.img, 0, 0);
+    job.cv._state = 'done'; job.cv.classList.add('drawn'); queue.shift();
+  }
+  requestAnimationFrame(pump);
+}
+function setupPlates() {
+  $$('canvas.eng').forEach((cv) => { if (cv.dataset.aspect) cv.style.aspectRatio = (innerWidth < 820 && cv.dataset.aspectM) || cv.dataset.aspect; });
+  const hero = $('canvas[data-scene="hero"]');
+  enqueue(hero);
+  const watch = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { enqueue(e.target); watch.unobserve(e.target); } }), { rootMargin: '400px 0px' });
+  $$('canvas.eng').forEach((cv) => { if (cv !== hero) watch.observe(cv); });
+  let rt = 0;
+  addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => {
+      tickets();
+      $$('canvas.eng').forEach((cv) => {
+        if (cv._state !== 'done') return;
+        const w = cv.getBoundingClientRect().width;
+        if (Math.abs(w - cv._cssW) / cv._cssW > 0.2) { cv._state = ''; enqueue(cv); }
+      });
+    }, 450);
+  });
+}
+
+/* ======================= Live path tracer (path-tracer-web, MIT, Sandes Savarimuthu) ======================= */
+const DEMO_SCENE = {
+  version: 2, name: 'Portfolio',
+  camera: { target: [0, 0.75, 0], yaw: 24, pitch: 12, distance: 6.2, fov: 36, aperture: 0, focusDistance: 0 },
+  environment: { type: 'sky', zenith: '#aab4ff', horizon: '#fcfcfc', ground: '#e5e6fb', intensity: 0.9 },
+  render: { maxBounces: 6, maxSamples: 600, exposure: 0, toneMapping: 'aces', clamp: 8 },
+  materials: [
+    { id: 'floor', name: 'Floor', baseColor: '#fcfcfc', roughness: 0.55, pattern: 'checker', patternColor: '#2a2ecd', patternScale: 4 },
+    { id: 'chrome', name: 'Chrome', baseColor: '#f4f4f4', metallic: 1, roughness: 0.03 },
+    { id: 'cobalt', name: 'Cobalt', baseColor: '#2a2ecd', roughness: 0.35, clearcoat: 1, clearcoatRoughness: 0.03 },
+    { id: 'glass', name: 'Glass', baseColor: '#ffffff', transmission: 1, roughness: 0, ior: 1.5 },
+    { id: 'stone', name: 'Stone', baseColor: '#f2f2f6', roughness: 0.8 }
+  ],
+  objects: [
+    { id: 'floor', shape: 'plane', position: [0, 0, 0], scale: [16, 1, 16], materialId: 'floor' },
+    { id: 'plinth', shape: 'box', position: [0, 0.2, 0], scale: [1.5, 0.4, 1.5], materialId: 'stone' },
+    { id: 'mirror', shape: 'sphere', position: [0, 1.05, 0], scale: [1.3, 1.3, 1.3], materialId: 'chrome' },
+    { id: 'blue', shape: 'sphere', position: [-1.6, 0.42, 0.9], scale: [0.84, 0.84, 0.84], materialId: 'cobalt' },
+    { id: 'lens', shape: 'sphere', position: [1.5, 0.36, 1.1], scale: [0.72, 0.72, 0.72], materialId: 'glass' },
+    { id: 'c1', shape: 'cylinder', position: [-2.3, 1.3, -1.8], scale: [0.5, 2.6, 0.5], materialId: 'stone' },
+    { id: 'c2', shape: 'cylinder', position: [2.3, 1.3, -1.8], scale: [0.5, 2.6, 0.5], materialId: 'stone' },
+    { id: 'c3', shape: 'cylinder', position: [-0.8, 1.3, -3.2], scale: [0.5, 2.6, 0.5], materialId: 'cobalt' },
+    { id: 'c4', shape: 'cylinder', position: [0.8, 1.3, -3.2], scale: [0.5, 2.6, 0.5], materialId: 'cobalt' }
+  ],
+  lights: [{ id: 'sun', type: 'sun', rotation: [-42, 0, 32], intensity: 2.6, angle: 1.5 }]
+};
+function setupDemo() {
+  const host = $('#demoView'); if (!host) return;
+  const fail = () => { const w = $('#dmWait'); if (w) { w.dataset.failed = '1'; w.textContent = C[lang].demo.fail; } };
+  const start = () => {
+    const probe = document.createElement('canvas').getContext('webgl2');
+    if (!probe || !probe.getExtension('EXT_color_buffer_float')) { fail(); return; }
+    import('./path-tracer.js').then(() => {
+      const el = document.createElement('pt-viewer');
+      el.setAttribute('light-follow', ''); el.setAttribute('max-samples', '600');
+      const data = document.createElement('script'); data.type = 'application/json'; data.textContent = JSON.stringify(DEMO_SCENE);
+      el.appendChild(data);
+      el.addEventListener('pt-ready', () => { const w = $('#dmWait'); if (w) w.remove(); }, { once: true });
+      host.appendChild(el);
+    }).catch(fail);
+  };
+  if (!('IntersectionObserver' in window)) { start(); return; }
+  const o = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { o.disconnect(); start(); } }, { rootMargin: '300px 0px' });
+  o.observe(host);
+}
+
+/* ======================= A small demo for each project ======================= */
+const VZ = {
+  fr: {
+    l: { cap: "Faites avancer un objet dans son parcours avant la vente.", steps: ['Demande', 'Estimé', 'Reçu', 'Catalogue'], next: 'Étape suivante', sign: 'Signer le mandat', signed: 'Mandat signé', reset: 'Recommencer', blocked: "Bloqué : pas de catalogue tant que le mandat n'est pas signé.", signedMsg: 'Mandat généré en PDF et signé.', msgs: ['', "E-mail d'estimation préparé, PDF joint.", "Objet reçu à l'entrepôt, fiche remplie sur tablette.", 'Prêt pour le catalogue.'] },
+    v: { cap: "Cliquez sur une étape pour suivre le trajet d'une affirmation.", steps: [['Radio', '37 stations dans 13 pays, captées en direct.'], ['ffmpeg', 'Capture et rééchantillonnage du flux audio.'], ['Whisper', 'faster-whisper transcrit la parole en texte.'], ['Agent 1', 'Découpe la transcription en sujets et écarte pubs, sport et météo.'], ['Agent 2', 'Vérifie chaque affirmation par une recherche web et garde ses sources.'], ['Score', 'Un score de crédibilité par station et par sujet.']] },
+    r: { open: 'Ouvrir le path tracer en direct' },
+    s: { cap: 'Rejouez une session dans le terminal de SENSAI.', note: "Session d'exemple : les commandes et les messages de SENSAI sont ceux du projet, les réponses du modèle sont illustratives.", scenes: [
+      ['Recherche dans le code', [['in', '$ sensai index'], ['sys', 'Indexing /home/me/sensai/demo-repo'], ['sys', '6 files indexed (9 chunks), 0 unchanged, 0 removed'], ['in', '$ sensai chat --model gemma4:e2b'], ['sys', 'SENSAI | model: gemma4:e2b | /exit or Ctrl-D to quit'], ['in', 'you> où est calculé le taux de complétion ?'], ['tool', 'tool> search_code({"query": "taux de complétion des tâches"})'], ['tool', 'tool> search_code finished (212 ms)'], ['ai', 'sensai> Dans taskman/stats.py, lignes 9 à 11 : completion_rate divise count_done(tasks) par len(tasks). Sur une liste vide, elle lève ZeroDivisionError.'], ['sys', '734 tokens (prompt 652, completion 82) | context 734/8192 (8%)']]],
+      ['Budget de contexte', [['in', 'you> ajoute un test pour completion_rate sur une liste vide'], ['ai', 'sensai> Test ajouté dans tests/test_stats.py.'], ['sys', '6912 tokens (prompt 6801, completion 111) | context 6912/8192 (84%)'], ['in', "you> résume ce qu'on a changé depuis le début"], ['tool', 'memory> summarized 18 old messages (~6240 -> ~910 tokens)'], ['ai', 'sensai> On a corrigé completion_rate pour les listes vides et ajouté un test qui le vérifie.'], ['sys', '1480 tokens (prompt 1402, completion 78) | context 1480/8192 (18%)']]],
+      ['/history et /fork', [['in', 'you> /history'], ['sys', '1 user      propose un nom pour la fonction de tri'], ['sys', '2 assistant sort_by_priority'], ['sys', '3 user      plutôt en français'], ['sys', '4 assistant trier_par_priorite'], ['in', 'you> /fork 2'], ['sys', 'Forked session 7c41e9a2 from message 2'], ['in', 'you> et en camelCase ?'], ['ai', 'sensai> sortByPriority']]]
+    ] },
+    m: { cap: "Une vraie partie d'échecs. Après chaque coup, le réseau entraîné de my_torch analyse la position, et la page compare sa réponse aux règles.", newGame: 'Nouvelle partie', undo: 'Annuler', vsComputer: "Contre l'ordinateur", twoPlayers: 'À deux',
+      white: 'blancs', black: 'noirs', says: 'my_torch_analyzer :', loading: 'Chargement du réseau…', fail: "Le réseau n'a pas pu être chargé.", thinking: "L'ordinateur réfléchit…", check: 'Échec !', stalemate: 'Pat : partie nulle.',
+      mate: (w) => 'Échec et mat : les ' + w + ' gagnent.', toMove: (c, you) => you ? 'À vous de jouer (' + c + ').' : 'Trait aux ' + c + '.',
+      compare: (truth, ok) => 'Les règles : ' + truth + '. ' + (ok ? 'Le réseau a raison.' : 'Le réseau se trompe.'), tally: (r, n) => 'Juste sur ' + r + ' position' + (r > 1 ? 's' : '') + ' sur ' + n + ' dans cette partie.',
+      names: { K: 'roi blanc', Q: 'dame blanche', R: 'tour blanche', B: 'fou blanc', N: 'cavalier blanc', P: 'pion blanc', k: 'roi noir', q: 'dame noire', r: 'tour noire', b: 'fou noir', n: 'cavalier noir', p: 'pion noir' } },
+    z: { cap: 'Simulation simplifiée de la logique de mon IA. Cliquez sur une case pour y déposer de la nourriture.', gather: 'Les IA mangent et ramassent des pierres', calling: "Broadcast : l'équipe se rassemble pour l'incantation", level: 'niveau' },
+    k: { cap: 'Le principe du KNN sur des points fictifs : cliquez pour placer un point à classer.', res: (a, b) => '5 voisins : ' + a + ' pleins, ' + b + ' creux. Classe prédite : ' + (a > b ? 'pleins' : 'creux') + '.' },
+    a: { cap: 'Snake, un des deux jeux livrés avec le moteur. Flèches ou boutons.', start: 'Cliquez pour jouer', over: 'Perdu. Cliquez pour rejouer', score: 'Score' },
+    p: { cap: "Passez commande : les cuisines sont des processus créés à la demande, fermés après 5 secondes d'inactivité.", order: 'Commander 3 pizzas', kitchen: 'Cuisine', queue: 'en attente', none: 'Aucune cuisine ouverte.', served: 'Pizzas servies' }
+  },
+  en: {
+    l: { cap: 'Move an object through its pre-sale life.', steps: ['Request', 'Estimated', 'Received', 'Catalogue'], next: 'Next step', sign: 'Sign the mandate', signed: 'Mandate signed', reset: 'Start over', blocked: 'Blocked: no catalogue until the mandate is signed.', signedMsg: 'Mandate generated as a PDF and signed.', msgs: ['', 'Estimate email drafted, PDF attached.', 'Object received at the warehouse, record filled in on a tablet.', 'Ready for the catalogue.'] },
+    v: { cap: 'Click a step to follow how a claim travels.', steps: [['Radio', '37 stations in 13 countries, captured live.'], ['ffmpeg', 'Captures and resamples the audio stream.'], ['Whisper', 'faster-whisper turns speech into text.'], ['Agent 1', 'Splits the transcript into news items and drops ads, sport and weather.'], ['Agent 2', 'Checks each claim against web search and keeps its sources.'], ['Score', 'A credibility score per station and per topic.']] },
+    r: { open: 'Open the live path tracer' },
+    s: { cap: "Replay a session in SENSAI's terminal.", note: "Example session: the commands and SENSAI's messages are the project's own, the model's answers are illustrative.", scenes: [
+      ['Code search', [['in', '$ sensai index'], ['sys', 'Indexing /home/me/sensai/demo-repo'], ['sys', '6 files indexed (9 chunks), 0 unchanged, 0 removed'], ['in', '$ sensai chat --model gemma4:e2b'], ['sys', 'SENSAI | model: gemma4:e2b | /exit or Ctrl-D to quit'], ['in', 'you> where is the completion rate computed?'], ['tool', 'tool> search_code({"query": "task completion rate"})'], ['tool', 'tool> search_code finished (212 ms)'], ['ai', 'sensai> In taskman/stats.py, lines 9 to 11: completion_rate divides count_done(tasks) by len(tasks). On an empty list it raises ZeroDivisionError.'], ['sys', '734 tokens (prompt 652, completion 82) | context 734/8192 (8%)']]],
+      ['Context budget', [['in', 'you> add a test for completion_rate on an empty list'], ['ai', 'sensai> Test added in tests/test_stats.py.'], ['sys', '6912 tokens (prompt 6801, completion 111) | context 6912/8192 (84%)'], ['in', "you> sum up what we've changed so far"], ['tool', 'memory> summarized 18 old messages (~6240 -> ~910 tokens)'], ['ai', 'sensai> We fixed completion_rate for empty lists and added a test that checks it.'], ['sys', '1480 tokens (prompt 1402, completion 78) | context 1480/8192 (18%)']]],
+      ['/history and /fork', [['in', 'you> /history'], ['sys', '1 user      suggest a name for the sort function'], ['sys', '2 assistant sort_by_priority'], ['sys', '3 user      shorter'], ['sys', '4 assistant by_priority'], ['in', 'you> /fork 2'], ['sys', 'Forked session 7c41e9a2 from message 2'], ['in', 'you> and in camelCase?'], ['ai', 'sensai> sortByPriority']]]
+    ] },
+    m: { cap: "A real game of chess. After every move, my_torch's trained network analyses the position, and the page checks its answer against the rules.", newGame: 'New game', undo: 'Undo', vsComputer: 'Vs computer', twoPlayers: 'Two players',
+      white: 'White', black: 'Black', says: 'my_torch_analyzer:', loading: 'Loading the network…', fail: "The network couldn't be loaded.", thinking: 'The computer is thinking…', check: 'Check!', stalemate: 'Stalemate: draw.',
+      mate: (w) => 'Checkmate: ' + w + ' wins.', toMove: (c, you) => you ? 'Your move (' + c + ').' : c + ' to move.',
+      compare: (truth, ok) => 'The rules: ' + truth + '. ' + (ok ? 'The network is right.' : 'The network is wrong.'), tally: (r, n) => 'Right on ' + r + ' of ' + n + ' positions this game.',
+      names: { K: 'white king', Q: 'white queen', R: 'white rook', B: 'white bishop', N: 'white knight', P: 'white pawn', k: 'black king', q: 'black queen', r: 'black rook', b: 'black bishop', n: 'black knight', p: 'black pawn' } },
+    z: { cap: "A simplified simulation of my AI's logic. Click a tile to drop food on it.", gather: 'The AIs eat and collect stones', calling: 'Broadcast: the team gathers for the incantation', level: 'level' },
+    k: { cap: 'How KNN works, on made-up points: click to place a point to classify.', res: (a, b) => '5 neighbours: ' + a + ' filled, ' + b + ' hollow. Predicted class: ' + (a > b ? 'filled' : 'hollow') + '.' },
+    a: { cap: 'Snake, one of the two games shipped with the engine. Arrow keys or buttons.', start: 'Click to play', over: 'Game over. Click to play again', score: 'Score' },
+    p: { cap: 'Place an order: kitchens are processes spawned on demand and closed after 5 idle seconds.', order: 'Order 3 pizzas', kitchen: 'Kitchen', queue: 'waiting', none: 'No kitchen open.', served: 'Pizzas served' }
+  }
+};
+const INKC = '#2a2ecd', SOFT = '#e5e6fb';
+const MT_LABELS = ['Nothing', 'Check', 'Checkmate', 'Stalemate'];
+const MT = { net: null, failed: false, p: null };
+function loadNet() {
+  if (!MT.p) MT.p = fetch('./my_torch_net.json').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((d) => {
+    const bin = atob(d.b64), u8 = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+    const f = new Float32Array(u8.buffer), a = 769 * 32, b = a + 32, c = b + 128;
+    MT.net = { W1: f.subarray(0, a), b1: Array.from(f.subarray(a, b)), W2: f.subarray(b, c), b2: Array.from(f.subarray(c, c + 4)) };
+  }).catch((e) => { MT.failed = true; throw e; });
+  return MT.p;
+}
+function vCanvas(host, w, h) {
+  const c = document.createElement('canvas'); c.width = w * 2; c.height = h * 2;
+  c.style.cssText = 'width:100%;display:block;aspect-ratio:' + w + '/' + h;
+  host.appendChild(c); const x = c.getContext('2d'); x.scale(2, 2); return [c, x];
+}
+function vBtn(label, fn) { const b = document.createElement('button'); b.type = 'button'; b.className = 'vb'; b.textContent = label; b.addEventListener('click', fn); return b; }
+function vP(host, cls, text) { const p = document.createElement('p'); p.className = cls; p.textContent = text || ''; host.appendChild(p); return p; }
+const vPos = (c, e, w) => { const r = c.getBoundingClientRect(), k = w / r.width; return [(e.clientX - r.left) * k, (e.clientY - r.top) * k]; };
+
+const VIZ = [
+  /* Leducq: the pre-sale workflow and its one hard rule */
+  (host, t) => {
+    let st = 0, signed = false;
+    vP(host, 'viz-cap', t.l.cap);
+    const ol = document.createElement('ol'); ol.className = 'lz'; host.appendChild(ol);
+    const msg = vP(host, 'lz-msg'); msg.setAttribute('aria-live', 'polite');
+    const bt = document.createElement('div'); bt.className = 'viz-btns'; host.appendChild(bt);
+    const draw = () => { ol.innerHTML = t.l.steps.map((s, k) => '<li class="' + (k < st ? 'done' : k === st ? 'cur' : '') + '">' + esc(s) + '</li>').join(''); sign.textContent = signed ? t.l.signed : t.l.sign; sign.disabled = signed; next.disabled = st >= 3; };
+    const next = vBtn(t.l.next, () => { if (st === 2 && !signed) { msg.textContent = t.l.blocked; return; } if (st < 3) { st++; msg.textContent = t.l.msgs[st]; } draw(); });
+    const sign = vBtn(t.l.sign, () => { signed = true; msg.textContent = t.l.signedMsg; draw(); });
+    bt.append(next, sign, vBtn(t.l.reset, () => { st = 0; signed = false; msg.textContent = ''; draw(); }));
+    draw();
+  },
+  /* Verity: the pipeline, one step at a time */
+  (host, t) => {
+    vP(host, 'viz-cap', t.v.cap);
+    const bt = document.createElement('div'); bt.className = 'viz-btns'; host.appendChild(bt);
+    const d = vP(host, 'lz-msg'); d.setAttribute('aria-live', 'polite');
+    const bs = t.v.steps.map((s, k) => vBtn((k + 1) + '. ' + s[0], () => pick(k)));
+    const pick = (k) => { bs.forEach((b, j) => b.classList.toggle('on', j === k)); d.textContent = t.v.steps[k][1]; };
+    bt.append(...bs); pick(0);
+  },
+  /* Sensai: replay of a session, using the CLI's own output formats */
+  (host, t) => {
+    vP(host, 'viz-cap', t.s.cap);
+    const bt = document.createElement('div'); bt.className = 'viz-btns'; host.appendChild(bt);
+    const term = document.createElement('pre'); term.className = 'term'; host.appendChild(term);
+    vP(host, 'viz-cap', t.s.note);
+    let timer = 0;
+    const line = (kind, text) => { const r = document.createElement('span'); r.className = 't-' + kind; r.textContent = text; term.appendChild(r); return r; };
+    const play = (k) => {
+      clearTimeout(timer); bs.forEach((b, j) => b.classList.toggle('on', j === k)); term.textContent = '';
+      const lines = t.s.scenes[k][1];
+      if (reduce) { lines.forEach((l) => line(l[0], l[1])); return; }
+      let i = 0;
+      const next = () => {
+        if (i >= lines.length) return;
+        const [kind, text] = lines[i++];
+        if (kind === 'in') {
+          const r = line(kind, ''); let c = 0;
+          const type = () => { r.textContent = text.slice(0, ++c); timer = setTimeout(c < text.length ? type : next, c < text.length ? 24 : 420); };
+          type();
+        } else { line(kind, text); timer = setTimeout(next, kind === 'ai' ? 650 : 300); }
+      };
+      next();
+    };
+    const bs = t.s.scenes.map((s, k) => vBtn(s[0], () => play(k)));
+    bt.append(...bs); play(0);
+    return () => clearTimeout(timer);
+  },
+  /* my_torch: a real game of chess, with the trained network commenting every position */
+  (host, t) => {
+    vP(host, 'viz-cap', t.m.cap);
+    const wrap = document.createElement('div'); wrap.className = 'mt'; host.appendChild(wrap);
+    const board = document.createElement('div'); board.className = 'mt-board'; wrap.appendChild(board);
+    const side = document.createElement('div'); side.className = 'mt-side'; wrap.appendChild(side);
+    const ctl = document.createElement('div'); ctl.className = 'viz-btns'; side.appendChild(ctl);
+    const status = vP(side, 'mt-status'); status.setAttribute('aria-live', 'polite');
+    const bars = document.createElement('div'); bars.className = 'mt-bars'; side.appendChild(bars);
+    const out = vP(side, 'mt-out');
+    const cmp = vP(side, 'viz-cap');
+    const GLYPH = { K: '♔', Q: '♕', R: '♖', B: '♗', N: '♘', P: '♙', k: '♚', q: '♛', r: '♜', b: '♝', n: '♞', p: '♟' };
+    const START = 'rnbqkbnrpppppppp' + '-'.repeat(32) + 'PPPPPPPPRNBQKBNR';
+    const fresh = () => ({ cells: Array.from(START, (c) => (c === '-' ? '' : c)), turn: 'w', castle: { K: true, Q: true, k: true, q: true }, ep: -1 });
+    const colorOf = (p) => (p ? (p === p.toUpperCase() ? 'w' : 'b') : null);
+    const other = (c) => (c === 'w' ? 'b' : 'w');
+    const inB = (r, c) => r >= 0 && r < 8 && c >= 0 && c < 8;
+    const KN = [[1, 2], [2, 1], [-1, 2], [-2, 1], [1, -2], [2, -1], [-1, -2], [-2, -1]];
+    const KG = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
+    const DIAG = KG.slice(4), ORTH = KG.slice(0, 4);
+
+    function attacked(B, sq, by) {
+      const r = sq >> 3, c = sq & 7, up = by === 'w';
+      const pr = up ? r + 1 : r - 1, P = up ? 'P' : 'p';
+      for (const dc of [-1, 1]) if (inB(pr, c + dc) && B[pr * 8 + c + dc] === P) return true;
+      const N = up ? 'N' : 'n', K = up ? 'K' : 'k';
+      for (const [dr, dc] of KN) if (inB(r + dr, c + dc) && B[(r + dr) * 8 + c + dc] === N) return true;
+      for (const [dr, dc] of KG) if (inB(r + dr, c + dc) && B[(r + dr) * 8 + c + dc] === K) return true;
+      const ray = (dirs, a, b) => dirs.some(([dr, dc]) => {
+        for (let rr = r + dr, cc = c + dc; inB(rr, cc); rr += dr, cc += dc) { const p = B[rr * 8 + cc]; if (p) return p === a || p === b; }
+        return false;
+      });
+      return up ? (ray(DIAG, 'B', 'Q') || ray(ORTH, 'R', 'Q')) : (ray(DIAG, 'b', 'q') || ray(ORTH, 'r', 'q'));
+    }
+    const kingAt = (B, col) => B.indexOf(col === 'w' ? 'K' : 'k');
+    const inCheck = (st, col) => { const k = kingAt(st.cells, col); return k >= 0 && attacked(st.cells, k, other(col)); };
+
+    function pseudo(st) {
+      const B = st.cells, col = st.turn, mv = [];
+      for (let i = 0; i < 64; i++) {
+        const p = B[i]; if (!p || colorOf(p) !== col) continue;
+        const r = i >> 3, c = i & 7, k = p.toLowerCase(), add = (to, x) => mv.push(Object.assign({ from: i, to }, x));
+        const free = (to) => colorOf(B[to]) !== col;
+        if (k === 'p') {
+          const d = col === 'w' ? -1 : 1, r1 = r + d, last = col === 'w' ? 0 : 7, home = col === 'w' ? 6 : 1;
+          if (!inB(r1, c)) continue;
+          if (!B[r1 * 8 + c]) {
+            add(r1 * 8 + c, { promo: r1 === last });
+            if (r === home && !B[(r + 2 * d) * 8 + c]) add((r + 2 * d) * 8 + c, { double: true });
+          }
+          for (const dc of [-1, 1]) {
+            if (!inB(r1, c + dc)) continue;
+            const to = r1 * 8 + c + dc;
+            if (B[to] && colorOf(B[to]) !== col) add(to, { promo: r1 === last });
+            else if (to === st.ep) add(to, { ep: true });
+          }
+        } else if (k === 'n' || k === 'k') {
+          for (const [dr, dc] of (k === 'n' ? KN : KG)) if (inB(r + dr, c + dc) && free((r + dr) * 8 + c + dc)) add((r + dr) * 8 + c + dc);
+          if (k === 'k') {
+            const base = col === 'w' ? 56 : 0, R = col === 'w' ? 'R' : 'r', cs = st.castle;
+            if (i === base + 4 && cs[col === 'w' ? 'K' : 'k'] && !B[base + 5] && !B[base + 6] && B[base + 7] === R) add(base + 6, { castle: true });
+            if (i === base + 4 && cs[col === 'w' ? 'Q' : 'q'] && !B[base + 3] && !B[base + 2] && !B[base + 1] && B[base] === R) add(base + 2, { castle: true });
+          }
+        } else {
+          const dirs = k === 'b' ? DIAG : k === 'r' ? ORTH : KG;
+          for (const [dr, dc] of dirs) for (let rr = r + dr, cc = c + dc; inB(rr, cc); rr += dr, cc += dc) {
+            const to = rr * 8 + cc; if (B[to]) { if (colorOf(B[to]) !== col) add(to); break; } add(to);
+          }
+        }
+      }
+      return mv;
+    }
+    function play(st, m) {
+      const B = st.cells.slice(), p = B[m.from], col = colorOf(p);
+      B[m.to] = m.promo ? (col === 'w' ? 'Q' : 'q') : p; B[m.from] = '';
+      if (m.ep) B[m.to + (col === 'w' ? 8 : -8)] = '';
+      if (m.castle) { const kingSide = (m.to & 7) === 6, rFrom = kingSide ? m.to + 1 : m.to - 2, rTo = kingSide ? m.to - 1 : m.to + 1; B[rTo] = B[rFrom]; B[rFrom] = ''; }
+      const cs = Object.assign({}, st.castle);
+      if (p === 'K') cs.K = cs.Q = false; if (p === 'k') cs.k = cs.q = false;
+      [[63, 'K'], [56, 'Q'], [7, 'k'], [0, 'q']].forEach(([sq, f]) => { if (m.from === sq || m.to === sq) cs[f] = false; });
+      return { cells: B, turn: other(st.turn), castle: cs, ep: m.double ? (m.from + m.to) / 2 : -1 };
+    }
+    function legal(st) {
+      const col = st.turn, opp = other(col);
+      return pseudo(st).filter((m) => {
+        if (m.castle && (inCheck(st, col) || attacked(st.cells, (m.from + m.to) / 2, opp))) return false;
+        const ns = play(st, m), k = kingAt(ns.cells, col);
+        return k >= 0 && !attacked(ns.cells, k, opp);
+      });
+    }
+    const rules = (st) => { const n = legal(st).length, chk = inCheck(st, st.turn); return n ? (chk ? 'Check' : 'Nothing') : (chk ? 'Checkmate' : 'Stalemate'); };
+    const said = (label, turn) => (label === 'Check' || label === 'Checkmate') ? label + ' ' + (turn === 'w' ? 'Black' : 'White') : label;
+
+    /* The computer: a three-ply alpha-beta search on material and piece placement. */
+    const VAL = { p: 100, n: 310, b: 330, r: 500, q: 900, k: 0 };
+    function evaluate(B) {
+      let s = 0;
+      for (let i = 0; i < 64; i++) {
+        const p = B[i]; if (!p) continue;
+        const k = p.toLowerCase(), w = p !== k, r = i >> 3, c = i & 7, centre = 7 - Math.abs(3.5 - r) * 2 - Math.abs(3.5 - c) * 2;
+        let v = VAL[k];
+        if (k === 'n' || k === 'b') v += centre * 4;
+        if (k === 'p') v += (w ? 6 - r : r - 1) * 6 + (c > 1 && c < 6 ? 4 : 0);
+        s += w ? v : -v;
+      }
+      return s;
+    }
+    function search(st, depth, alpha, beta) {
+      if (depth === 0) return (st.turn === 'w' ? 1 : -1) * evaluate(st.cells);
+      const moves = legal(st);
+      if (!moves.length) return inCheck(st, st.turn) ? -100000 - depth : 0;
+      moves.sort((a, b) => (st.cells[b.to] ? 1 : 0) - (st.cells[a.to] ? 1 : 0));
+      for (const m of moves) { const v = -search(play(st, m), depth - 1, -beta, -alpha); if (v > alpha) alpha = v; if (alpha >= beta) break; }
+      return alpha;
+    }
+    function computerMove(st) {
+      let best = null, bv = -Infinity;
+      for (const m of legal(st)) { const v = -search(play(st, m), 2, -Infinity, Infinity) + Math.random() * 12; if (v > bv) { bv = v; best = m; } }
+      return best;
+    }
+
+    /* Game state and drawing */
+    let st = fresh(), hist = [], sel = -1, targets = [], last = null, vsComputer = true, thinking = false, timer = 0, seen = 0, right = 0;
+    const sqBtns = [];
+    for (let i = 0; i < 64; i++) {
+      const b = document.createElement('button'); b.type = 'button';
+      if (((i >> 3) + (i & 7)) % 2) b.classList.add('d');
+      b.addEventListener('click', () => clickSq(i));
+      board.appendChild(b); sqBtns.push(b);
+    }
+    const bNew = vBtn(t.m.newGame, () => { clearTimeout(timer); st = fresh(); hist = []; last = null; sel = -1; targets = []; thinking = false; seen = 0; right = 0; draw(true); });
+    const bUndo = vBtn(t.m.undo, () => {
+      if (thinking || !hist.length) return;
+      let n = vsComputer && hist.length > 1 && st.turn === 'w' ? 2 : 1;
+      while (n-- && hist.length) { const h = hist.pop(); st = h.st; last = h.last; }
+      sel = -1; targets = []; draw(false);
+    });
+    const bVs = vBtn(t.m.vsComputer, () => { vsComputer = true; draw(false); maybeComputer(); });
+    const bTwo = vBtn(t.m.twoPlayers, () => { vsComputer = false; draw(false); });
+    ctl.append(bNew, bUndo, bVs, bTwo);
+
+    function clickSq(i) {
+      if (thinking || !legal(st).length || (vsComputer && st.turn !== 'w')) return;
+      const m = targets.find((x) => x.to === i);
+      if (sel >= 0 && m) { move(m); return; }
+      if (colorOf(st.cells[i]) === st.turn && sel !== i) { sel = i; targets = legal(st).filter((x) => x.from === i); }
+      else { sel = -1; targets = []; }
+      draw(false);
+    }
+    function move(m) {
+      hist.push({ st, last }); st = play(st, m); last = m; sel = -1; targets = [];
+      draw(true); maybeComputer();
+    }
+    function maybeComputer() {
+      if (!vsComputer || st.turn !== 'b' || !legal(st).length) return;
+      thinking = true; draw(false);
+      timer = setTimeout(() => { const m = computerMove(st); thinking = false; if (m) move(m); else draw(false); }, reduce ? 0 : 450);
+    }
+    function draw(newPosition) {
+      const chk = inCheck(st, st.turn), king = kingAt(st.cells, st.turn), lbl = rules(st);
+      sqBtns.forEach((b, i) => {
+        const p = st.cells[i];
+        b.textContent = p ? GLYPH[p] + '︎' : '';
+        b.classList.toggle('sel', i === sel);
+        b.classList.toggle('t', targets.some((x) => x.to === i));
+        b.classList.toggle('lm', !!last && (last.from === i || last.to === i));
+        b.classList.toggle('ck', chk && i === king);
+        b.setAttribute('aria-label', 'abcdefgh'[i & 7] + (8 - (i >> 3)) + (p ? ', ' + t.m.names[p] : ''));
+      });
+      bVs.classList.toggle('on', vsComputer); bTwo.classList.toggle('on', !vsComputer);
+      bUndo.disabled = !hist.length || thinking;
+      status.textContent = lbl === 'Checkmate' ? t.m.mate(st.turn === 'w' ? t.m.black : t.m.white)
+        : lbl === 'Stalemate' ? t.m.stalemate
+        : thinking ? t.m.thinking
+        : (chk ? t.m.check + ' ' : '') + t.m.toMove(st.turn === 'w' ? t.m.white : t.m.black, vsComputer && st.turn === 'w');
+      const net = MT.net;
+      if (!net) { out.textContent = MT.failed ? t.m.fail : t.m.loading; bars.innerHTML = ''; cmp.textContent = ''; return; }
+      const h = net.b1.slice();
+      st.cells.forEach((p, i) => { if (!p) return; const r = ('PNBRQKpnbrqk'.indexOf(p) * 64 + i) * 32; for (let j = 0; j < 32; j++) h[j] += net.W1[r + j]; });
+      if (st.turn === 'w') for (let j = 0; j < 32; j++) h[j] += net.W1[768 * 32 + j];
+      const z = net.b2.slice();
+      for (let j = 0; j < 32; j++) { const a = Math.max(0, h[j]); if (a) for (let c = 0; c < 4; c++) z[c] += a * net.W2[j * 4 + c]; }
+      const mx = Math.max(...z), e = z.map((v) => Math.exp(v - mx)), sum = e.reduce((a, b) => a + b, 0), pr = e.map((v) => v / sum);
+      const best = pr.indexOf(Math.max(...pr)), netSays = said(MT_LABELS[best], st.turn), truth = said(lbl, st.turn), ok = netSays === truth;
+      if (newPosition) { seen++; if (ok) right++; }
+      bars.innerHTML = MT_LABELS.map((l, c) => '<div class="bar' + (c === best ? ' best' : '') + '"><span>' + l + '</span><i><b style="width:' + (pr[c] * 100).toFixed(1) + '%"></b></i><span>' + Math.round(pr[c] * 100) + ' %</span></div>').join('');
+      out.innerHTML = '<span>' + esc(t.m.says) + '</span> <code>' + esc(netSays) + '</code>';
+      cmp.textContent = t.m.compare(truth, ok) + (seen ? ' ' + t.m.tally(right, seen) : '');
+    }
+    draw(true);
+    loadNet().then(() => { seen = 0; right = 0; draw(true); }, () => draw(false));
+    return () => clearTimeout(timer);
+  },
+  /* Raytracer: an engraved plate and a way to the live path tracer */
+  (host, t) => {
+    const cv = document.createElement('canvas'); cv.className = 'eng'; cv.dataset.scene = 'spheres'; cv.style.aspectRatio = '1.7'; host.appendChild(cv);
+    const bt = document.createElement('div'); bt.className = 'viz-btns'; host.appendChild(bt);
+    const a = document.createElement('a'); a.className = 'vb'; a.href = '#demo'; a.textContent = t.r.open; bt.appendChild(a);
+    setTimeout(() => enqueue(cv), 650);
+  },
+  /* Zappy: eat, collect stones, call the team, level up */
+  (host, t) => {
+    vP(host, 'viz-cap', t.z.cap);
+    const GW = 14, GH = 7, T = 40, [c, x] = vCanvas(host, GW * T, GH * T), st = vP(host, 'lz-msg');
+    const rnd = (n) => Math.floor(Math.random() * n), drop = (arr, n) => { for (let k = 0; k < n; k++) arr.push([rnd(GW), rnd(GH)]); };
+    const food = [], stones = []; let lvl = 1, call = null, flash = 0;
+    drop(food, 10); drop(stones, 8);
+    const ais = [0, 1, 2, 3].map(() => ({ x: rnd(GW), y: rnd(GH), f: 10 + rnd(6), s: 0 }));
+    const near = (a, arr) => { let b = null, bd = 1e9; arr.forEach((p) => { const d = Math.abs(p[0] - a.x) + Math.abs(p[1] - a.y); if (d < bd) { bd = d; b = p; } }); return b; };
+    const go = (a, p) => { if (a.x !== p[0]) a.x += Math.sign(p[0] - a.x); else if (a.y !== p[1]) a.y += Math.sign(p[1] - a.y); };
+    const tick = () => {
+      ais.forEach((a) => {
+        a.f = Math.max(0, a.f - 0.5);
+        let target = null;
+        if (a.f < 5) target = near(a, food); else if (call) { if (call !== a) target = [call.x, call.y]; } else target = near(a, stones);
+        if (target) go(a, target);
+        let k = food.findIndex((p) => p[0] === a.x && p[1] === a.y);
+        if (k >= 0 && a.f < 12) { food.splice(k, 1); a.f += 6; }
+        if (!call) { k = stones.findIndex((p) => p[0] === a.x && p[1] === a.y); if (k >= 0) { stones.splice(k, 1); if (++a.s >= 3) call = a; } }
+      });
+      if (call && ais.filter((a) => a.x === call.x && a.y === call.y).length >= 3) { lvl = lvl >= 8 ? 1 : lvl + 1; call.s = 0; flash = 4; call = null; }
+      if (food.length < 8) drop(food, 2); if (stones.length < 6) drop(stones, 2);
+      if (flash > 0) flash--;
+      draw();
+    };
+    const draw = () => {
+      x.fillStyle = '#fcfcfc'; x.fillRect(0, 0, GW * T, GH * T);
+      x.strokeStyle = SOFT; x.lineWidth = 1; x.beginPath();
+      for (let k = 0; k <= GW; k++) { x.moveTo(k * T, 0); x.lineTo(k * T, GH * T); } for (let k = 0; k <= GH; k++) { x.moveTo(0, k * T); x.lineTo(GW * T, k * T); } x.stroke();
+      x.fillStyle = INKC; food.forEach((p) => { x.beginPath(); x.arc(p[0] * T + 12, p[1] * T + 12, 3.5, 0, 7); x.fill(); });
+      x.strokeStyle = INKC; x.lineWidth = 1.3; stones.forEach((p) => { const cx = p[0] * T + 28, cy = p[1] * T + 28; x.beginPath(); x.moveTo(cx, cy - 5); x.lineTo(cx + 5, cy); x.lineTo(cx, cy + 5); x.lineTo(cx - 5, cy); x.closePath(); x.stroke(); });
+      ais.forEach((a, k) => {
+        const cx = a.x * T + 20 + (k % 2 ? 5 : -5), cy = a.y * T + 20 + (k > 1 ? 5 : -5);
+        x.fillStyle = INKC; x.beginPath(); x.moveTo(cx, cy - 9); x.lineTo(cx + 8, cy + 7); x.lineTo(cx - 8, cy + 7); x.closePath(); x.fill();
+        if (a === call || (flash && a.s === 0)) { x.beginPath(); x.arc(a.x * T + 20, a.y * T + 20, a === call ? 24 : 30, 0, 7); x.stroke(); }
+      });
+      st.textContent = (call ? t.z.calling : t.z.gather) + ' · ' + t.z.level + ' ' + lvl;
+    };
+    c.addEventListener('click', (e) => { const [px, py] = vPos(c, e, GW * T); food.push([clamp(Math.floor(px / T), 0, GW - 1), clamp(Math.floor(py / T), 0, GH - 1)]); draw(); });
+    draw(); const id = setInterval(tick, 420); return () => clearInterval(id);
+  },
+  /* CVRIE: k nearest neighbours on made-up points */
+  (host, t) => {
+    vP(host, 'viz-cap', t.k.cap);
+    const W = 560, H = 290, [c, x] = vCanvas(host, W, H), out = vP(host, 'lz-msg');
+    let seed = 7; const r = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const pts = [];
+    for (let k = 0; k < 24; k++) { const a = r() * 6.283, d = Math.sqrt(r()) * 95; pts.push([190 + Math.cos(a) * d, 165 + Math.sin(a) * d * 0.8, 1]); }
+    for (let k = 0; k < 24; k++) { const a = r() * 6.283, d = Math.sqrt(r()) * 95; pts.push([375 + Math.cos(a) * d, 125 + Math.sin(a) * d * 0.8, 0]); }
+    let q = [285, 150];
+    const draw = () => {
+      x.fillStyle = '#fcfcfc'; x.fillRect(0, 0, W, H);
+      const nn = pts.map((p) => [Math.hypot(p[0] - q[0], p[1] - q[1]), p]).sort((a, b) => a[0] - b[0]).slice(0, 5);
+      x.strokeStyle = INKC; x.lineWidth = 1; nn.forEach((n) => { x.beginPath(); x.moveTo(q[0], q[1]); x.lineTo(n[1][0], n[1][1]); x.stroke(); });
+      x.setLineDash([4, 4]); x.beginPath(); x.arc(q[0], q[1], nn[4][0], 0, 7); x.stroke(); x.setLineDash([]);
+      pts.forEach((p) => { x.beginPath(); x.arc(p[0], p[1], 5, 0, 7); if (p[2]) { x.fillStyle = INKC; x.fill(); } else { x.fillStyle = '#fcfcfc'; x.fill(); x.lineWidth = 1.4; x.stroke(); } });
+      const a = nn.filter((n) => n[1][2]).length;
+      x.fillStyle = a > 2 ? INKC : '#fcfcfc'; x.lineWidth = 2; x.beginPath(); x.rect(q[0] - 7, q[1] - 7, 14, 14); x.fill(); x.stroke();
+      out.textContent = t.k.res(a, 5 - a);
+    };
+    c.style.cursor = 'crosshair';
+    c.addEventListener('click', (e) => { q = vPos(c, e, W); draw(); });
+    draw();
+  },
+  /* Arcade: a playable Snake */
+  (host, t) => {
+    vP(host, 'viz-cap', t.a.cap);
+    const CW = 28, CH = 14, S = 20, [c, x] = vCanvas(host, CW * S, CH * S), out = vP(host, 'lz-msg');
+    c.tabIndex = 0; c.style.cursor = 'pointer';
+    let snake, dir, nextDir, food, score, state = 'idle', id = 0;
+    const place = () => { do { food = [Math.floor(Math.random() * CW), Math.floor(Math.random() * CH)]; } while (snake.some((p) => p[0] === food[0] && p[1] === food[1])); };
+    const reset = () => { snake = [[8, 7], [7, 7], [6, 7]]; dir = nextDir = [1, 0]; score = 0; place(); };
+    const draw = () => {
+      x.fillStyle = '#fcfcfc'; x.fillRect(0, 0, CW * S, CH * S);
+      x.strokeStyle = INKC; x.lineWidth = 1; x.strokeRect(0.5, 0.5, CW * S - 1, CH * S - 1);
+      x.fillStyle = INKC; snake.forEach((p, k) => { x.globalAlpha = k ? 0.78 : 1; x.fillRect(p[0] * S + 2, p[1] * S + 2, S - 4, S - 4); }); x.globalAlpha = 1;
+      x.beginPath(); x.arc(food[0] * S + S / 2, food[1] * S + S / 2, 5, 0, 7); x.fill();
+      out.textContent = state === 'run' ? t.a.score + ' : ' + score : (state === 'over' ? t.a.over + ' (' + score + ')' : t.a.start);
+    };
+    const tick = () => {
+      dir = nextDir; const h = [snake[0][0] + dir[0], snake[0][1] + dir[1]];
+      if (h[0] < 0 || h[1] < 0 || h[0] >= CW || h[1] >= CH || snake.some((p) => p[0] === h[0] && p[1] === h[1])) { state = 'over'; clearInterval(id); draw(); return; }
+      snake.unshift(h); if (h[0] === food[0] && h[1] === food[1]) { score++; place(); } else snake.pop();
+      draw();
+    };
+    const start = () => { if (state === 'run') return; reset(); state = 'run'; clearInterval(id); id = setInterval(tick, 120); c.focus({ preventScroll: true }); draw(); };
+    const turn = (dx, dy) => { if (state !== 'run') { start(); return; } if (dx !== -dir[0] || dy !== -dir[1]) nextDir = [dx, dy]; };
+    const KEYS = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
+    c.addEventListener('click', start);
+    c.addEventListener('keydown', (e) => { const k = KEYS[e.key]; if (k) { e.preventDefault(); turn(k[0], k[1]); } else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); start(); } });
+    const bt = document.createElement('div'); bt.className = 'viz-btns'; host.appendChild(bt);
+    [['←', -1, 0], ['↑', 0, -1], ['↓', 0, 1], ['→', 1, 0]].forEach((b) => bt.appendChild(vBtn(b[0], () => turn(b[1], b[2]))));
+    reset(); draw(); return () => clearInterval(id);
+  },
+  /* The Plazza: kitchens as processes */
+  (host, t) => {
+    vP(host, 'viz-cap', t.p.cap);
+    const bt = document.createElement('div'); bt.className = 'viz-btns'; host.appendChild(bt);
+    const list = document.createElement('div'); list.className = 'kits'; host.appendChild(list);
+    const out = vP(host, 'lz-msg');
+    const COOKS = 3; let kitchens = [], served = 0, n = 0;
+    const load = (k) => k.queue + k.cooks.filter((c) => c > 0).length;
+    const draw = () => {
+      list.innerHTML = kitchens.length ? kitchens.map((k) => '<div class="kit"><span>' + esc(t.p.kitchen) + ' ' + k.id + '</span>' + k.cooks.map((c) => '<i class="' + (c > 0 ? 'b' : '') + '"></i>').join('') + '<span>' + k.queue + ' ' + esc(t.p.queue) + '</span></div>').join('') : '<p class="viz-cap">' + esc(t.p.none) + '</p>';
+      out.textContent = t.p.served + ' : ' + served;
+    };
+    bt.appendChild(vBtn(t.p.order, () => {
+      for (let p = 0; p < 3; p++) {
+        let k = kitchens.filter((q) => load(q) < COOKS * 2).sort((a, b) => load(a) - load(b))[0];
+        if (!k) { if (kitchens.length >= 4) k = kitchens.slice().sort((a, b) => load(a) - load(b))[0]; else { k = { id: ++n, cooks: new Array(COOKS).fill(0), queue: 0, idle: 0 }; kitchens.push(k); } }
+        k.queue++; k.idle = 0;
+      }
+      draw();
+    }));
+    const id = setInterval(() => {
+      kitchens.forEach((k) => {
+        k.cooks = k.cooks.map((c) => { if (c > 0) { c--; if (c === 0) served++; } if (c === 0 && k.queue > 0) { k.queue--; c = 5; } return c; });
+        k.idle = load(k) ? 0 : k.idle + 1;
+      });
+      kitchens = kitchens.filter((k) => k.idle < 12);
+      draw();
+    }, 420);
+    draw(); return () => clearInterval(id);
+  }
+];
+let vizStops = [];
+function initViz(row) {
+  const host = row.querySelector('.viz'); if (!host || host.dataset.on) return;
+  host.dataset.on = '1';
+  const stop = VIZ[+host.dataset.viz](host, VZ[lang]); if (stop) vizStops.push(stop);
+}
+
+/* ======================= Interactions ======================= */
+function bind() {
+  $('#langBtn').addEventListener('click', () => { lang = lang === 'fr' ? 'en' : 'fr'; try { localStorage.setItem('lang', lang); } catch (e) { /* storage unavailable */ } render(); });
+  const menu = $('#menu');
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open); $('#menuBtn').setAttribute('aria-expanded', String(open));
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    if (open) $('#menuClose').focus(); else $('#menuBtn').focus({ preventScroll: true });
+  };
+  $('#menuBtn').addEventListener('click', () => setMenu(true));
+  $('#menuClose').addEventListener('click', () => setMenu(false));
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false); });
+  $('#rows').addEventListener('click', (e) => {
+    const b = e.target.closest('.row-head'); if (!b) return;
+    const row = b.closest('.row'), open = !row.classList.contains('open');
+    row.classList.toggle('open', open); b.setAttribute('aria-expanded', String(open));
+    if (open) initViz(row);
+  });
+  let ticking = false;
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { updateStatement(); ticking = false; }); } }, { passive: true });
+}
+
+bind();
+render();
+setupPlates();
+setupDemo();
+const dropBanner = () => setTimeout(() => document.documentElement.classList.add('avail-in'), reduce ? 0 : 2000);
+if (document.readyState === 'complete') dropBanner(); else addEventListener('load', dropBanner, { once: true });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(tickets);
+})();
+</script>
+</body>
+</html>
