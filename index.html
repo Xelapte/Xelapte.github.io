@@ -74,9 +74,9 @@ section,footer{scroll-margin-top:110px}
 .hero-art canvas{position:absolute;inset:0;width:100%;height:100%}
 .hero-text{position:absolute;left:0;right:0;top:41%;transform:translateY(-50%);display:grid;justify-items:center;gap:20px;text-align:center;padding:0 var(--gut);pointer-events:none}
 .kicker{font-family:var(--serif);color:var(--ink);font-size:clamp(19px,1.7vw,25px);letter-spacing:-.02em;background:rgba(252,252,252,.85);padding:0 6px}
-.hero h1{font-family:var(--serif);font-weight:400;color:var(--ink);text-transform:uppercase;font-size:clamp(48px,7.4vw,116px);line-height:.82;letter-spacing:-.045em;max-width:13ch;text-wrap:balance}
+.hero h1{font-family:var(--serif);font-weight:400;color:var(--ink);text-transform:uppercase;font-size:clamp(48px,7.4vw,116px);line-height:1.08;letter-spacing:-.012em;max-width:13ch;text-wrap:balance}
 .hero h1 .w{display:inline-block;white-space:nowrap}
-.js .hero h1 .ch{display:inline-block;animation:inkIn 1.3s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i) * 24ms)}
+.js .hero h1 .ch{display:inline;animation:inkIn 1.3s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i) * 24ms)}
 @keyframes inkIn{from{opacity:0;color:#b9bbf2}to{opacity:1}}
 .hero-act{pointer-events:auto;display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:center;color:var(--ink);font-size:17px}
 .hero-act a:not(.ticket){background:rgba(252,252,252,.88);padding:0 4px;text-underline-offset:4px}
@@ -141,6 +141,27 @@ section,footer{scroll-margin-top:110px}
 .lz li.done{border-color:var(--ink);color:var(--ink)}
 .lz li.cur{background:var(--ink);border-color:var(--ink);color:#fff}
 .lz-msg{min-height:1.4em;color:var(--ink)}
+.term{margin:0;background:var(--ink);color:#fff;font:12.5px/1.55 ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;padding:14px 16px;min-height:262px;white-space:pre-wrap;overflow-wrap:anywhere}
+.term span{display:block}
+.term .t-sys{color:#b4b7f4}
+.term .t-tool{color:#d9dafc;opacity:.85}
+.term .t-in::after{content:"";display:inline-block;width:.55em;height:1em;vertical-align:-.15em;background:#fff;margin-left:2px;opacity:0}
+.term span:last-child.t-in::after{opacity:1}
+.mt{display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:18px;align-items:start}
+.mt-board{display:grid;grid-template-columns:repeat(8,1fr);border:1px solid var(--ink)}
+.mt-board button{aspect-ratio:1;display:grid;place-items:center;padding:0;background:#fcfcfc;color:var(--ink);font:clamp(17px,2.2vw,27px)/1 "Segoe UI Symbol","Apple Symbols","Noto Sans Symbols 2","DejaVu Sans",serif}
+.mt-board button.d{background:var(--ink-soft)}
+.mt-board button.sel{outline:2px solid var(--ink);outline-offset:-2px;background:#c9cbf8}
+.mt-side{display:grid;gap:12px}
+.mt-bars{display:grid;gap:5px;font-size:13px}
+.bar{display:grid;grid-template-columns:6.4em 1fr 3.2em;gap:8px;align-items:center}
+.bar span:first-child{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+.bar span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.bar i{height:9px;background:var(--ink-soft)}
+.bar i b{display:block;height:100%;background:var(--ink);transition:width .35s}
+.bar.best span{color:var(--ink)}
+.mt-out{color:var(--ink)}
+.mt-out code{font:600 14px ui-monospace,Menlo,Consolas,monospace}
 .kits{display:grid;gap:8px;min-height:104px;align-content:start}
 .kit{display:flex;align-items:center;gap:8px}
 .kit i{width:16px;height:16px;border:1px solid var(--ink)}
@@ -232,6 +253,10 @@ section,footer{scroll-margin-top:110px}
   .facts dl{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 22px}
   .facts dl>div:last-child{grid-column:span 2}
   .hero{height:calc(100svh - 176px)}
+}
+@media (max-width:1180px){
+  .mt{grid-template-columns:1fr}
+  .mt-board{max-width:330px}
 }
 @media (max-width:820px){
   body{font-size:17px}
@@ -403,7 +428,7 @@ const C = {
       "J'aime le code qu'on peut reprendre sans explications : des frontières claires, des messages d'erreur honnêtes, rien de malin à décrypter à 3 h du matin."
     ],
     statement: "Deux ans de C sous Unix. Six mois à construire le système d'information d'une maison de ventes. Un raytracer où chaque rayon compte. Et toujours la même règle : un code que quelqu'un d'autre peut reprendre sans moi.",
-    projects: { eyebrow: "Ce que j'ai construit", title: "Sept projets, du shell au système d'information", role: 'Rôle', stack: 'Stack', repo: 'Voir le code sur GitHub' },
+    projects: { eyebrow: "Ce que j'ai construit", title: "Neuf projets, du shell au système d'information", role: 'Rôle', stack: 'Stack', repo: 'Voir le code sur GitHub' },
     rows: [
       ['Leducq SI', "Le système d'information d'une maison de ventes parisienne, de la demande d'estimation au mandat signé.", 'Développeur principal, stage', 'Airtable, Noloco, API REST',
         ['Cycle hebdomadaire : lundi avec une équipe, du mardi au jeudi en développement, démo le vendredi.', "Les sept salariés l'utilisent chaque jour. Il libère 10 à 15 heures d'administratif par semaine.", "J'ai passé les deux dernières semaines à refactorer et à écrire un wiki pour que personne ne dépende de moi."],
@@ -411,6 +436,12 @@ const C = {
       ['Verity', 'Le fact-checking en direct de 37 radios dans 13 pays, avec deux agents LLM.', 'En solo, hackathon', 'Next.js, Python, n8n',
         ['faster-whisper transcrit chaque flux en direct, et n8n fait tourner deux agents.', "L'agent 1 découpe les transcriptions en sujets, l'agent 2 vérifie chaque affirmation par une recherche web.", 'Chaque station reçoit un score de crédibilité, par sujet.'],
         null, 'https://github.com/Xelapte/MedIA-Hackaton'],
+      ['Sensai', 'Un assistant de code en ligne de commande sur un modèle local servi par Ollama, sans framework LLM.', 'En équipe : RAG, contexte, sessions', 'Python, Ollama, SQLite, Docker',
+        ["Un assistant qui lit, modifie et teste du code, avec des outils soumis à approbation, des personas développeur et relecteur, et une mémoire de projet.", "Ma partie principale : la recherche dans le code. Les fichiers sont découpés, vectorisés avec Ollama et retrouvés par similarité cosinus grâce à l'outil search_code.", "Le budget de contexte : quand la conversation approche de la limite, les anciens messages sont résumés, et l'occupation du contexte s'affiche après chaque tour.", "Aussi : le profil utilisateur, /history et /fork pour repartir d'un message antérieur, et l'image Docker d'Ollama."],
+        null, 'https://github.com/Xelapte/Sensai'],
+      ['my_torch', "Un réseau de neurones écrit à la main avec numpy, qui lit une position d'échecs et dit s'il y a échec, mat ou rien.", 'En binôme : données, entraînement, CLI', 'Python, numpy',
+        ['Ma partie : la CLI, la lecture des 723 019 positions, la sauvegarde et le chargement du réseau, et l\'entraînement.', 'Mini-batchs, entropie croisée, validation 80/20 et early stopping pour éviter le surapprentissage.', 'Une recherche en grille sur 12 architectures, puis un départage sur 200 000 positions : le réseau [769, 32, 4] atteint 72,07 % de précision en validation.', 'La démo fait tourner le vrai réseau entraîné, directement dans votre navigateur.'],
+        null, 'https://github.com/Xelapte/my_torch'],
       ['Raytracer', 'Un ray tracer et path tracer en C++17, avec des plugins chargés à l\'exécution.', 'Performances du moteur', 'C++17, CMake, SFML',
         ['Réalisé à quatre. Ma partie : la boucle par pixel et par rayon, la profiler et réduire le coût de chaque rayon.', 'Formes, matériaux, textures et débruiteurs sont des plugins, avec un aperçu en direct SFML et ImGui.', 'Les gravures de cette page sont dessinées par un petit raytracer, ligne par ligne, dans votre navigateur.'],
         null, 'https://github.com/Xelapte/raytracer'],
@@ -434,11 +465,11 @@ const C = {
       ['2025', 'Deuxième année', 'C++ et algorithmique. Les premiers gros projets de groupe : le raytracer, puis Zappy.', false],
       ['Juil.–déc. 2025', 'Stage chez Leducq', "Développeur principal sur le système d'information d'une maison de ventes parisienne.", true],
       ['Juil. 2026', 'Hackathon MedIA', 'Verity, un fact-checker en direct pour la radio, construit seul en un week-end.', false],
-      ['Depuis 2026', 'Troisième année', 'Systèmes et architecture. Je cherche un stage de mars à août 2027.', false]
+      ['Depuis 2026', 'Troisième année', "Sensai, un assistant de code IA en équipe, et my_torch, un réseau de neurones écrit à la main. Je cherche un stage de mars à août 2027.", false]
     ] },
     cta: { title: 'Votre prochain stagiaire est déjà passé en production', text: "Pendant mon stage, j'ai livré un système d'information que sept personnes utilisent chaque jour.", btn: "M'écrire" },
     about: { eyebrow: 'À propos', title: 'Alex', text: "Je suis en troisième année à Epitech, à Paris. J'aime tenir un service de bout en bout : le modèle de données, le code, l'automatisation, et les gens qui l'utilisent au quotidien.", follow: 'Suivre mon travail',
-      skills: [['Langages', 'C, C++, Python, TypeScript, Rust, Bash, Haskell'], ['Web', 'React, Next.js, Node.js, Astro, Tailwind'], ['Données', 'Modélisation, SQL, API REST, Airtable, Noloco'], ['IA', 'Orchestration de LLM, n8n, scikit-learn, Whisper'], ['Systèmes', 'Linux, sockets, multiprocessus et IPC'], ['Outils', 'Git, Make, CMake, Docker']] },
+      skills: [['Langages', 'C, C++, Python, TypeScript, Rust, Bash, Haskell'], ['Web', 'React, Next.js, Node.js, Astro, Tailwind'], ['Données', 'Modélisation, SQL, API REST, Airtable, Noloco'], ['IA', 'LLM locaux (Ollama), RAG, n8n, réseaux de neurones (numpy), scikit-learn, Whisper'], ['Systèmes', 'Linux, sockets, multiprocessus et IPC'], ['Outils', 'Git, Make, CMake, Docker']] },
     prod: { eyebrow: 'En production', title: 'Ce qui tourne déjà', items: [
       ["La ressaisie a disparu. Sept personnes travaillent chaque jour dans le système, et l'administratif a gagné 10 à 15 heures par semaine.", 'Leducq · maison de ventes · 7 personnes'],
       ['37 radios dans 13 pays, transcrites en direct, chaque affirmation vérifiée et sourcée.', 'Verity · hackathon MedIA · en solo'],
@@ -448,7 +479,7 @@ const C = {
       ['Quel stage cherches-tu, et quand ?', "Un stage de six mois, de mars à août 2027, en développement logiciel ou en systèmes d'information."],
       ['As-tu déjà travaillé en entreprise ?', "Oui : six mois chez Leducq, une maison de ventes parisienne, comme développeur principal sur son système d'information. Les sept salariés l'utilisent chaque jour. J'ai aussi fait douze mois de service civique à l'association Les Pilotes, comme développeur CRM."],
       ['Seul ou en équipe ?', "Les deux. Verity en solo, le Raytracer à quatre, Zappy et CVRIE en groupe, et chez Leducq avec une démo à l'équipe chaque vendredi."],
-      ['Le code est-il public ?', 'Verity, le Raytracer, Zappy et CVRIE sont sur GitHub. Arcade et The Plazza sont privés : je peux les montrer sur demande.'],
+      ['Le code est-il public ?', 'Verity, Sensai, my_torch, le Raytracer, Zappy et CVRIE sont sur GitHub. Arcade et The Plazza sont privés : je peux les montrer sur demande.'],
       ['Avec quelles technologies ?', 'Côté langages : C, C++, Python, TypeScript, Rust, Bash et Haskell. Côté web : React, Next.js et Node.js. Côté données : SQL, API REST, Airtable et Noloco.'],
       ['Où es-tu basé ?', "À Paris, où j'étudie à Epitech."]
     ] },
@@ -466,7 +497,7 @@ const C = {
       'I like code someone else can pick up without a walkthrough: clear boundaries, honest error messages, nothing clever to decode at 3am.'
     ],
     statement: "Two years of C on Unix. Six months building an auction house's information system. A raytracer where every ray counts. And always the same rule: code someone else can pick up without me.",
-    projects: { eyebrow: "What I've built", title: 'Seven projects, from a shell to an information system', role: 'Role', stack: 'Stack', repo: 'View the code on GitHub' },
+    projects: { eyebrow: "What I've built", title: 'Nine projects, from a shell to an information system', role: 'Role', stack: 'Stack', repo: 'View the code on GitHub' },
     rows: [
       ['Leducq SI', 'The information system of a Paris auction house, from the first estimate request to the signed mandate.', 'Lead developer, internship', 'Airtable, Noloco, REST APIs',
         ['Weekly cycle: Monday with one team, Tuesday to Thursday building, Friday demo.', 'All seven staff use it daily. It frees 10 to 15 hours of admin a week.', 'I spent the last two weeks refactoring and writing a wiki so nobody depends on me.'],
@@ -474,6 +505,12 @@ const C = {
       ['Verity', 'Live fact-checking of 37 radio stations in 13 countries, with two LLM agents.', 'Solo, hackathon', 'Next.js, Python, n8n',
         ['faster-whisper transcribes each stream live, and n8n runs two agents.', 'Agent 1 splits transcripts into news items, agent 2 checks each claim against live web search.', 'Each station gets a credibility score, by topic.'],
         null, 'https://github.com/Xelapte/MedIA-Hackaton'],
+      ['Sensai', 'A command-line coding assistant on a local model served by Ollama, with no LLM framework.', 'Team: RAG, context, sessions', 'Python, Ollama, SQLite, Docker',
+        ['An assistant that reads, edits and tests code, with tools that ask for approval, developer and reviewer personas, and a project memory.', 'My main part: code search. Files are split into chunks, embedded with Ollama and found by cosine similarity through the search_code tool.', 'The context budget: when the conversation nears the limit, older messages are summarised, and context usage is shown after each turn.', 'Also: the user profile, /history and /fork to branch from an earlier message, and the Ollama Docker image.'],
+        null, 'https://github.com/Xelapte/Sensai'],
+      ['my_torch', 'A neural network written by hand with numpy that reads a chess position and tells check, checkmate or nothing.', 'Pair: data, training, CLI', 'Python, numpy',
+        ['My part: the CLI, loading the 723,019 positions, saving and loading the network, and training.', 'Mini-batches, cross-entropy, an 80/20 validation split and early stopping against overfitting.', 'A grid search over 12 architectures, then a run-off on 200,000 positions: the [769, 32, 4] network reaches 72.07% validation accuracy.', 'The demo runs the real trained network, right in your browser.'],
+        null, 'https://github.com/Xelapte/my_torch'],
       ['Raytracer', 'A C++17 ray and path tracer with plugins loaded at runtime.', 'Engine performance', 'C++17, CMake, SFML',
         ['Built by a team of four. My part was the per-pixel, per-ray loop: profiling it and cutting the cost of each ray.', 'Shapes, materials, textures and denoisers are plugins, with a live SFML and ImGui preview.', 'The engravings on this page are drawn by a small raytracer, line by line, in your browser.'],
         null, 'https://github.com/Xelapte/raytracer'],
@@ -497,11 +534,11 @@ const C = {
       ['2025', 'Second year', 'C++ and algorithmics. The first big group projects: the raytracer, then Zappy.', false],
       ['Jul–Dec 2025', 'Internship at Leducq', "Lead developer on a Paris auction house's information system.", true],
       ['Jul 2026', 'MedIA hackathon', 'Verity, a live fact-checker for radio, built solo over a weekend.', false],
-      ['2026–now', 'Third year', 'Systems and architecture. Looking for an internship from March to August 2027.', false]
+      ['2026–now', 'Third year', 'Sensai, a team-built AI coding assistant, and my_torch, a neural network written by hand. Looking for an internship from March to August 2027.', false]
     ] },
     cta: { title: 'Your next intern has already shipped to production', text: 'During my internship I shipped an information system that seven people use every day.', btn: 'Write to me' },
     about: { eyebrow: 'About', title: 'Alex', text: "I'm in my third year at Epitech in Paris. I like owning a service end to end: the data model, the code, the automation, and the people who use it every day.", follow: 'Follow my work',
-      skills: [['Languages', 'C, C++, Python, TypeScript, Rust, Bash, Haskell'], ['Web', 'React, Next.js, Node.js, Astro, Tailwind'], ['Data', 'Modeling, SQL, REST APIs, Airtable, Noloco'], ['AI', 'LLM orchestration, n8n, scikit-learn, Whisper'], ['Systems', 'Linux, sockets, multiprocessing and IPC'], ['Tools', 'Git, Make, CMake, Docker']] },
+      skills: [['Languages', 'C, C++, Python, TypeScript, Rust, Bash, Haskell'], ['Web', 'React, Next.js, Node.js, Astro, Tailwind'], ['Data', 'Modeling, SQL, REST APIs, Airtable, Noloco'], ['AI', 'Local LLMs (Ollama), RAG, n8n, neural networks (numpy), scikit-learn, Whisper'], ['Systems', 'Linux, sockets, multiprocessing and IPC'], ['Tools', 'Git, Make, CMake, Docker']] },
     prod: { eyebrow: 'In production', title: "What's already running", items: [
       ['Double entry is gone. Seven people work in the system every day, and admin got back 10 to 15 hours a week.', 'Leducq · auction house · 7 people'],
       ['37 radio stations in 13 countries, transcribed live, every claim checked and sourced.', 'Verity · MedIA hackathon · solo'],
@@ -511,7 +548,7 @@ const C = {
       ['What internship are you looking for, and when?', 'A six-month internship, from March to August 2027, in software development or information systems.'],
       ['Have you worked in a company?', 'Yes: six months at Leducq, a Paris auction house, as lead developer on its information system. All seven staff use it every day. I also did twelve months of civic service (service civique) at the Les Pilotes association, as a CRM developer.'],
       ['Solo or in a team?', 'Both. Verity solo, the Raytracer as a team of four, Zappy and CVRIE in groups, and at Leducq with a demo to the team every Friday.'],
-      ['Is the code public?', 'Verity, the Raytracer, Zappy and CVRIE are on GitHub. Arcade and The Plazza are private; I can show them on request.'],
+      ['Is the code public?', 'Verity, Sensai, my_torch, the Raytracer, Zappy and CVRIE are on GitHub. Arcade and The Plazza are private; I can show them on request.'],
       ['Which technologies?', 'Languages: C, C++, Python, TypeScript, Rust, Bash and Haskell. Web: React, Next.js and Node.js. Data: SQL, REST APIs, Airtable and Noloco.'],
       ['Where are you based?', 'In Paris, where I study at Epitech.']
     ] },
@@ -882,6 +919,15 @@ const VZ = {
     l: { cap: "Faites avancer un objet dans son parcours avant la vente.", steps: ['Demande', 'Estimé', 'Reçu', 'Catalogue'], next: 'Étape suivante', sign: 'Signer le mandat', signed: 'Mandat signé', reset: 'Recommencer', blocked: "Bloqué : pas de catalogue tant que le mandat n'est pas signé.", signedMsg: 'Mandat généré en PDF et signé.', msgs: ['', "E-mail d'estimation préparé, PDF joint.", "Objet reçu à l'entrepôt, fiche remplie sur tablette.", 'Prêt pour le catalogue.'] },
     v: { cap: "Cliquez sur une étape pour suivre le trajet d'une affirmation.", steps: [['Radio', '37 stations dans 13 pays, captées en direct.'], ['ffmpeg', 'Capture et rééchantillonnage du flux audio.'], ['Whisper', 'faster-whisper transcrit la parole en texte.'], ['Agent 1', 'Découpe la transcription en sujets et écarte pubs, sport et météo.'], ['Agent 2', 'Vérifie chaque affirmation par une recherche web et garde ses sources.'], ['Score', 'Un score de crédibilité par station et par sujet.']] },
     r: { open: 'Ouvrir le path tracer en direct' },
+    s: { cap: 'Rejouez une session dans le terminal de SENSAI.', note: "Session d'exemple : les commandes et les messages de SENSAI sont ceux du projet, les réponses du modèle sont illustratives.", scenes: [
+      ['Recherche dans le code', [['in', '$ sensai index'], ['sys', 'Indexing /home/me/sensai/demo-repo'], ['sys', '6 files indexed (9 chunks), 0 unchanged, 0 removed'], ['in', '$ sensai chat --model gemma4:e2b'], ['sys', 'SENSAI | model: gemma4:e2b | /exit or Ctrl-D to quit'], ['in', 'you> où est calculé le taux de complétion ?'], ['tool', 'tool> search_code({"query": "taux de complétion des tâches"})'], ['tool', 'tool> search_code finished (212 ms)'], ['ai', 'sensai> Dans taskman/stats.py, lignes 9 à 11 : completion_rate divise count_done(tasks) par len(tasks). Sur une liste vide, elle lève ZeroDivisionError.'], ['sys', '734 tokens (prompt 652, completion 82) | context 734/8192 (8%)']]],
+      ['Budget de contexte', [['in', 'you> ajoute un test pour completion_rate sur une liste vide'], ['ai', 'sensai> Test ajouté dans tests/test_stats.py.'], ['sys', '6912 tokens (prompt 6801, completion 111) | context 6912/8192 (84%)'], ['in', "you> résume ce qu'on a changé depuis le début"], ['tool', 'memory> summarized 18 old messages (~6240 -> ~910 tokens)'], ['ai', 'sensai> On a corrigé completion_rate pour les listes vides et ajouté un test qui le vérifie.'], ['sys', '1480 tokens (prompt 1402, completion 78) | context 1480/8192 (18%)']]],
+      ['/history et /fork', [['in', 'you> /history'], ['sys', '1 user      propose un nom pour la fonction de tri'], ['sys', '2 assistant sort_by_priority'], ['sys', '3 user      plutôt en français'], ['sys', '4 assistant trier_par_priorite'], ['in', 'you> /fork 2'], ['sys', 'Forked session 7c41e9a2 from message 2'], ['in', 'you> et en camelCase ?'], ['ai', 'sensai> sortByPriority']]]
+    ] },
+    m: { cap: "Le vrai réseau entraîné de my_torch. Choisissez une position, ou déplacez une pièce : cliquez-la, puis cliquez sa nouvelle case.", white: 'Trait aux blancs', black: 'Trait aux noirs', says: 'my_torch_analyzer :', loading: 'Chargement du réseau…', fail: "Le réseau n'a pas pu être chargé.", edited: 'Position modifiée : pas de réponse attendue.',
+      expected: (e, ok) => 'Réponse attendue : ' + e + '. ' + (ok ? 'Le réseau a raison.' : 'Ici, le réseau se trompe : il a 72 % de précision en validation.'),
+      samples: [['Coup du berger', 'r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4', 'Checkmate White'], ['Échec du fou', 'rnbqkbnr/ppp2ppp/3p4/1B2p3/4P3/8/PPPP1PPP/RNBQK1NR b KQkq - 1 3', 'Check White'], ['Mat du couloir', 'R5k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1', 'Checkmate White'], ['Départ', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', 'Nothing'], ['Mat du sot', 'rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3', 'Checkmate Black']],
+      names: { K: 'roi blanc', Q: 'dame blanche', R: 'tour blanche', B: 'fou blanc', N: 'cavalier blanc', P: 'pion blanc', k: 'roi noir', q: 'dame noire', r: 'tour noire', b: 'fou noir', n: 'cavalier noir', p: 'pion noir' } },
     z: { cap: 'Simulation simplifiée de la logique de mon IA. Cliquez sur une case pour y déposer de la nourriture.', gather: 'Les IA mangent et ramassent des pierres', calling: "Broadcast : l'équipe se rassemble pour l'incantation", level: 'niveau' },
     k: { cap: 'Le principe du KNN sur des points fictifs : cliquez pour placer un point à classer.', res: (a, b) => '5 voisins : ' + a + ' pleins, ' + b + ' creux. Classe prédite : ' + (a > b ? 'pleins' : 'creux') + '.' },
     a: { cap: 'Snake, un des deux jeux livrés avec le moteur. Flèches ou boutons.', start: 'Cliquez pour jouer', over: 'Perdu. Cliquez pour rejouer', score: 'Score' },
@@ -891,6 +937,15 @@ const VZ = {
     l: { cap: 'Move an object through its pre-sale life.', steps: ['Request', 'Estimated', 'Received', 'Catalogue'], next: 'Next step', sign: 'Sign the mandate', signed: 'Mandate signed', reset: 'Start over', blocked: 'Blocked: no catalogue until the mandate is signed.', signedMsg: 'Mandate generated as a PDF and signed.', msgs: ['', 'Estimate email drafted, PDF attached.', 'Object received at the warehouse, record filled in on a tablet.', 'Ready for the catalogue.'] },
     v: { cap: 'Click a step to follow how a claim travels.', steps: [['Radio', '37 stations in 13 countries, captured live.'], ['ffmpeg', 'Captures and resamples the audio stream.'], ['Whisper', 'faster-whisper turns speech into text.'], ['Agent 1', 'Splits the transcript into news items and drops ads, sport and weather.'], ['Agent 2', 'Checks each claim against web search and keeps its sources.'], ['Score', 'A credibility score per station and per topic.']] },
     r: { open: 'Open the live path tracer' },
+    s: { cap: "Replay a session in SENSAI's terminal.", note: "Example session: the commands and SENSAI's messages are the project's own, the model's answers are illustrative.", scenes: [
+      ['Code search', [['in', '$ sensai index'], ['sys', 'Indexing /home/me/sensai/demo-repo'], ['sys', '6 files indexed (9 chunks), 0 unchanged, 0 removed'], ['in', '$ sensai chat --model gemma4:e2b'], ['sys', 'SENSAI | model: gemma4:e2b | /exit or Ctrl-D to quit'], ['in', 'you> where is the completion rate computed?'], ['tool', 'tool> search_code({"query": "task completion rate"})'], ['tool', 'tool> search_code finished (212 ms)'], ['ai', 'sensai> In taskman/stats.py, lines 9 to 11: completion_rate divides count_done(tasks) by len(tasks). On an empty list it raises ZeroDivisionError.'], ['sys', '734 tokens (prompt 652, completion 82) | context 734/8192 (8%)']]],
+      ['Context budget', [['in', 'you> add a test for completion_rate on an empty list'], ['ai', 'sensai> Test added in tests/test_stats.py.'], ['sys', '6912 tokens (prompt 6801, completion 111) | context 6912/8192 (84%)'], ['in', "you> sum up what we've changed so far"], ['tool', 'memory> summarized 18 old messages (~6240 -> ~910 tokens)'], ['ai', 'sensai> We fixed completion_rate for empty lists and added a test that checks it.'], ['sys', '1480 tokens (prompt 1402, completion 78) | context 1480/8192 (18%)']]],
+      ['/history and /fork', [['in', 'you> /history'], ['sys', '1 user      suggest a name for the sort function'], ['sys', '2 assistant sort_by_priority'], ['sys', '3 user      shorter'], ['sys', '4 assistant by_priority'], ['in', 'you> /fork 2'], ['sys', 'Forked session 7c41e9a2 from message 2'], ['in', 'you> and in camelCase?'], ['ai', 'sensai> sortByPriority']]]
+    ] },
+    m: { cap: "my_torch's real trained network. Pick a position, or move a piece: click it, then click its new square.", white: 'White to move', black: 'Black to move', says: 'my_torch_analyzer:', loading: 'Loading the network…', fail: "The network couldn't be loaded.", edited: 'Edited position: no expected answer.',
+      expected: (e, ok) => 'Expected answer: ' + e + '. ' + (ok ? 'The network is right.' : 'Here the network is wrong: it has 72% validation accuracy.'),
+      samples: [["Scholar's mate", 'r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4', 'Checkmate White'], ['Bishop check', 'rnbqkbnr/ppp2ppp/3p4/1B2p3/4P3/8/PPPP1PPP/RNBQK1NR b KQkq - 1 3', 'Check White'], ['Back-rank mate', 'R5k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1', 'Checkmate White'], ['Start', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', 'Nothing'], ["Fool's mate", 'rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3', 'Checkmate Black']],
+      names: { K: 'white king', Q: 'white queen', R: 'white rook', B: 'white bishop', N: 'white knight', P: 'white pawn', k: 'black king', q: 'black queen', r: 'black rook', b: 'black bishop', n: 'black knight', p: 'black pawn' } },
     z: { cap: "A simplified simulation of my AI's logic. Click a tile to drop food on it.", gather: 'The AIs eat and collect stones', calling: 'Broadcast: the team gathers for the incantation', level: 'level' },
     k: { cap: 'How KNN works, on made-up points: click to place a point to classify.', res: (a, b) => '5 neighbours: ' + a + ' filled, ' + b + ' hollow. Predicted class: ' + (a > b ? 'filled' : 'hollow') + '.' },
     a: { cap: 'Snake, one of the two games shipped with the engine. Arrow keys or buttons.', start: 'Click to play', over: 'Game over. Click to play again', score: 'Score' },
@@ -898,6 +953,17 @@ const VZ = {
   }
 };
 const INKC = '#2a2ecd', SOFT = '#e5e6fb';
+const MT_LABELS = ['Nothing', 'Check', 'Checkmate', 'Stalemate'];
+const MT = { net: null, failed: false, p: null };
+function loadNet() {
+  if (!MT.p) MT.p = fetch('./my_torch_net.json').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((d) => {
+    const bin = atob(d.b64), u8 = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+    const f = new Float32Array(u8.buffer), a = 769 * 32, b = a + 32, c = b + 128;
+    MT.net = { W1: f.subarray(0, a), b1: Array.from(f.subarray(a, b)), W2: f.subarray(b, c), b2: Array.from(f.subarray(c, c + 4)) };
+  }).catch((e) => { MT.failed = true; throw e; });
+  return MT.p;
+}
 function vCanvas(host, w, h) {
   const c = document.createElement('canvas'); c.width = w * 2; c.height = h * 2;
   c.style.cssText = 'width:100%;display:block;aspect-ratio:' + w + '/' + h;
@@ -929,6 +995,95 @@ const VIZ = [
     const bs = t.v.steps.map((s, k) => vBtn((k + 1) + '. ' + s[0], () => pick(k)));
     const pick = (k) => { bs.forEach((b, j) => b.classList.toggle('on', j === k)); d.textContent = t.v.steps[k][1]; };
     bt.append(...bs); pick(0);
+  },
+  /* Sensai: replay of a session, using the CLI's own output formats */
+  (host, t) => {
+    vP(host, 'viz-cap', t.s.cap);
+    const bt = document.createElement('div'); bt.className = 'viz-btns'; host.appendChild(bt);
+    const term = document.createElement('pre'); term.className = 'term'; host.appendChild(term);
+    vP(host, 'viz-cap', t.s.note);
+    let timer = 0;
+    const line = (kind, text) => { const r = document.createElement('span'); r.className = 't-' + kind; r.textContent = text; term.appendChild(r); return r; };
+    const play = (k) => {
+      clearTimeout(timer); bs.forEach((b, j) => b.classList.toggle('on', j === k)); term.textContent = '';
+      const lines = t.s.scenes[k][1];
+      if (reduce) { lines.forEach((l) => line(l[0], l[1])); return; }
+      let i = 0;
+      const next = () => {
+        if (i >= lines.length) return;
+        const [kind, text] = lines[i++];
+        if (kind === 'in') {
+          const r = line(kind, ''); let c = 0;
+          const type = () => { r.textContent = text.slice(0, ++c); timer = setTimeout(c < text.length ? type : next, c < text.length ? 24 : 420); };
+          type();
+        } else { line(kind, text); timer = setTimeout(next, kind === 'ai' ? 650 : 300); }
+      };
+      next();
+    };
+    const bs = t.s.scenes.map((s, k) => vBtn(s[0], () => play(k)));
+    bt.append(...bs); play(0);
+    return () => clearTimeout(timer);
+  },
+  /* my_torch: the real trained network, run in the browser */
+  (host, t) => {
+    vP(host, 'viz-cap', t.m.cap);
+    const wrap = document.createElement('div'); wrap.className = 'mt'; host.appendChild(wrap);
+    const board = document.createElement('div'); board.className = 'mt-board'; wrap.appendChild(board);
+    const side = document.createElement('div'); side.className = 'mt-side'; wrap.appendChild(side);
+    const samples = document.createElement('div'); samples.className = 'viz-btns'; side.appendChild(samples);
+    const turns = document.createElement('div'); turns.className = 'viz-btns'; side.appendChild(turns);
+    const bars = document.createElement('div'); bars.className = 'mt-bars'; side.appendChild(bars);
+    const out = vP(side, 'mt-out'); out.setAttribute('aria-live', 'polite');
+    const exp = vP(side, 'viz-cap');
+    let cells = [], turn = 'w', sel = -1, expected = null, cur = 0;
+    const GLYPH = { K: '♔', Q: '♕', R: '♖', B: '♗', N: '♘', P: '♙', k: '♚', q: '♛', r: '♜', b: '♝', n: '♞', p: '♟' };
+    const sqName = (i) => 'abcdefgh'[i % 8] + (8 - Math.floor(i / 8));
+    const load = (fen) => { const f = fen.split(' '); cells = []; for (const ch of f[0]) { if (ch === '/') continue; if (/\d/.test(ch)) { for (let k = 0; k < +ch; k++) cells.push(''); } else cells.push(ch); } turn = f[1]; sel = -1; };
+    const sqBtns = [];
+    for (let i = 0; i < 64; i++) {
+      const b = document.createElement('button'); b.type = 'button';
+      if ((Math.floor(i / 8) + i % 8) % 2) b.className = 'd';
+      b.addEventListener('click', () => {
+        if (sel < 0) { if (cells[i]) sel = i; }
+        else if (sel === i) sel = -1;
+        else { cells[i] = cells[sel]; cells[sel] = ''; sel = -1; expected = null; cur = -1; }
+        draw();
+      });
+      board.appendChild(b); sqBtns.push(b);
+    }
+    const sb = t.m.samples.map((s, k) => vBtn(s[0], () => { load(s[1]); expected = s[2]; cur = k; draw(); }));
+    samples.append(...sb);
+    const tb = [vBtn(t.m.white, () => { turn = 'w'; expected = null; cur = -1; draw(); }), vBtn(t.m.black, () => { turn = 'b'; expected = null; cur = -1; draw(); })];
+    turns.append(...tb);
+    const draw = () => {
+      sqBtns.forEach((b, i) => {
+        const p = cells[i];
+        b.textContent = p ? GLYPH[p] + '︎' : '';
+        b.classList.toggle('sel', i === sel);
+        b.setAttribute('aria-label', sqName(i) + (p ? ', ' + t.m.names[p] : ''));
+        b.setAttribute('aria-pressed', String(i === sel));
+      });
+      sb.forEach((b, k) => b.classList.toggle('on', k === cur));
+      tb[0].classList.toggle('on', turn === 'w'); tb[1].classList.toggle('on', turn === 'b');
+      predict();
+    };
+    const predict = () => {
+      const net = MT.net;
+      if (!net) { out.textContent = MT.failed ? t.m.fail : t.m.loading; bars.innerHTML = ''; exp.textContent = ''; return; }
+      const h = net.b1.slice();
+      cells.forEach((p, i) => { if (!p) return; const r = ('PNBRQKpnbrqk'.indexOf(p) * 64 + i) * 32; for (let j = 0; j < 32; j++) h[j] += net.W1[r + j]; });
+      if (turn === 'w') for (let j = 0; j < 32; j++) h[j] += net.W1[768 * 32 + j];
+      const z = net.b2.slice();
+      for (let j = 0; j < 32; j++) { const a = Math.max(0, h[j]); if (a) for (let c = 0; c < 4; c++) z[c] += a * net.W2[j * 4 + c]; }
+      const m = Math.max(...z), e = z.map((v) => Math.exp(v - m)), s = e.reduce((a, b) => a + b, 0), pr = e.map((v) => v / s);
+      const best = pr.indexOf(Math.max(...pr)), label = MT_LABELS[best];
+      const said = (label === 'Check' || label === 'Checkmate') ? label + ' ' + (turn === 'w' ? 'Black' : 'White') : label;
+      bars.innerHTML = MT_LABELS.map((l, c) => '<div class="bar' + (c === best ? ' best' : '') + '"><span>' + l + '</span><i><b style="width:' + (pr[c] * 100).toFixed(1) + '%"></b></i><span>' + Math.round(pr[c] * 100) + ' %</span></div>').join('');
+      out.innerHTML = '<span>' + esc(t.m.says) + '</span> <code>' + esc(said) + '</code>';
+      exp.textContent = expected ? t.m.expected(expected, expected === said) : t.m.edited;
+    };
+    load(t.m.samples[0][1]); expected = t.m.samples[0][2]; draw();
+    loadNet().then(draw, draw);
   },
   /* Raytracer: an engraved plate and a way to the live path tracer */
   (host, t) => {
